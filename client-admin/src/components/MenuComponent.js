@@ -16,8 +16,8 @@ class Menu extends Component {
             <li className=" menu ">
               <Link to="/admin/category"> Category </Link>{" "}
             </li>
-            <li className=" menu ">
-              <Link to=""> Product </Link>{" "}
+            <li className="menu">
+              <Link to="/admin/product">Product</Link>
             </li>
             <li className=" menu ">
               <Link to=""> Order </Link>{" "}

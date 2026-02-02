@@ -26,6 +26,10 @@ const CategoryDAO = {
     );
     return result;
   },
+  async selectByID(_id) {
+    const category = await Models.Category.findById(_id).exec();
+    return category;
+  },
 };
 
 module.exports = CategoryDAO;
