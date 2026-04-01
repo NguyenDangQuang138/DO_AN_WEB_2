@@ -4,7 +4,6 @@ import MyContext from "../contexts/MyContext";
 
 class CategoryDetail extends Component {
   static contextType = MyContext;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +11,6 @@ class CategoryDetail extends Component {
       txtName: "",
     };
   }
-
   render() {
     return (
       <div className="float-right">
@@ -54,7 +52,6 @@ class CategoryDetail extends Component {
                     value="ADD NEW"
                     onClick={(e) => this.btnAddClick(e)}
                   />
-                  {/* <input type="submit" value="UPDATE" /> */}
                   <input
                     type="submit"
                     value="UPDATE"
@@ -73,7 +70,6 @@ class CategoryDetail extends Component {
       </div>
     );
   }
-
   componentDidUpdate(prevProps) {
     if (this.props.item !== prevProps.item) {
       this.setState({
@@ -82,8 +78,35 @@ class CategoryDetail extends Component {
       });
     }
   }
-
+  apiGetCategories() {
+    const config = { headers: { "x-access-token": this.context.token } };
+    axios.get("/api/admin/categories", config).then((res) => {
+      const result = res.data;
+      this.props.updateCategories(result);
+    });
+  }
   // event-handlers
+  btnAddClick(e) {
+    e.preventDefault();
+    const name = this.state.txtName;
+    if (name) {
+      const cate = { name: name };
+      this.apiPostCategory(cate);
+    } else {
+      alert("Please input name");
+    }
+  }
+  btnUpdateClick(e) {
+    e.preventDefault();
+    const id = this.state.txtID;
+    const name = this.state.txtName;
+    if (id && name) {
+      const cate = { name: name };
+      this.apiPutCategory(id, cate);
+    } else {
+      alert("Please input id and name");
+    }
+  }
   btnDeleteClick(e) {
     e.preventDefault();
     if (window.confirm("ARE YOU SURE?")) {
@@ -94,6 +117,31 @@ class CategoryDetail extends Component {
         alert("Please input id");
       }
     }
+  }
+  // apis
+  apiPostCategory(cate) {
+    const config = { headers: { "x-access-token": this.context.token } };
+    axios.post("/api/admin/categories", cate, config).then((res) => {
+      const result = res.data;
+      if (result) {
+        alert("SUCCESS!");
+        this.apiGetCategories();
+      } else {
+        alert("FAIL!");
+      }
+    });
+  }
+  apiPutCategory(id, cate) {
+    const config = { headers: { "x-access-token": this.context.token } };
+    axios.put("/api/admin/categories/" + id, cate, config).then((res) => {
+      const result = res.data;
+      if (result) {
+        alert("SUCCESS!");
+        this.apiGetCategories();
+      } else {
+        alert("FAIL!");
+      }
+    });
   }
   apiDeleteCategory(id) {
     const config = { headers: { "x-access-token": this.context.token } };
@@ -107,69 +155,5 @@ class CategoryDetail extends Component {
       }
     });
   }
-
-  btnUpdateClick(e) {
-    e.preventDefault();
-    const id = this.state.txtID;
-    const name = this.state.txtName;
-    if (id && name) {
-      const cate = { name: name };
-      this.apiPutCategory(id, cate);
-    } else {
-      alert("Please input id and name");
-    }
-  }
-
-  btnAddClick(e) {
-    e.preventDefault();
-    const name = this.state.txtName;
-    if (name) {
-      const cate = { name: name };
-      this.apiPostCategory(cate);
-    } else {
-      alert("Please input name");
-    }
-  }
-  // apis
-  apiPutCategory(id, cate) {
-    const config = { headers: { "x-access-token": this.context.token } };
-    axios.put("/api/admin/categories/" + id, cate, config).then((res) => {
-      console.log(res);
-
-      const result = res.data;
-      if (result) {
-        alert("SUCCESS!");
-        this.apiGetCategories();
-      } else {
-        alert("FAIL!");
-      }
-    });
-  }
-  apiGetCategories() {
-    const config = { headers: { "x-access-token": this.context.token } };
-    axios.get("/api/admin/categories", config).then((res) => {
-      const result = res.data;
-      this.props.updateCategories(result);
-    });
-  }
-  apiPostCategory(cate) {
-    const config = {
-      headers: {
-        "x-access-token": this.context.token,
-      },
-    };
-
-    axios.post("/api/admin/categories", cate, config).then((res) => {
-      const result = res.data;
-
-      if (result) {
-        alert("OK BABY!");
-        this.apiGetCategories();
-      } else {
-        alert("SORRY BABY!");
-      }
-    });
-  }
 }
-
 export default CategoryDetail;

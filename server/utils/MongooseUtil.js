@@ -21,6 +21,8 @@
 //   .catch((err) => {
 //     console.error(err);
 //   });
+const dns = require("dns");
+dns.setServers(["1.1.1.1", "1.0.0.1"]);
 const mongoose = require("mongoose");
 const MyConstants = require("./MyConstants");
 

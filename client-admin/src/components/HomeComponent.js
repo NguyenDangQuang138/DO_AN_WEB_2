@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-
+import  { Component } from 'react';
+import home_img from '../asset/imgs/home_img.jpg';
 class Home extends Component {
   render() {
     return (
       <div className="align-center">
         <h2 className="text-center">ADMIN HOME</h2>
         <img
-          src="https://i.imgflip.com/aidbyp.jpg"
-          width="800px"
-          height="600px"
+          src={home_img}
+          width="800"
+          height="600"
           alt=""
         />
       </div>

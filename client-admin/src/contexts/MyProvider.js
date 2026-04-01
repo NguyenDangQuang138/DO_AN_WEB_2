@@ -1,15 +1,13 @@
-import React, { Component } from "react";
-import MyContext from "./MyContext";
+import React, { Component } from 'react';
+import MyContext from './MyContext';
 
 class MyProvider extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // global state
-      // variables
-      token: "",
-      username: "",
+      token: '',
+      username: '',
 
       // functions
       setToken: this.setToken,

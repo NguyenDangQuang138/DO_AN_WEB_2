@@ -102,7 +102,7 @@ input.keyword {
   background-color: #ffeeaa;
 }
 
-/* hover, except header */
+/* hover rows, except header */
 .datatable tr:not(:first-child):hover {
   background-color: #dcfcfc;
   cursor: pointer;

@@ -1,6 +1,6 @@
-import axios from "axios";
-import React, { Component } from "react";
-import MyContext from "../contexts/MyContext";
+import axios from 'axios';
+import React, { Component } from 'react';
+import MyContext from '../contexts/MyContext';
 
 class Login extends Component {
   static contextType = MyContext; // using this.context to access global state
@@ -8,17 +8,16 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      txtUsername: "",
-      txtPassword: "",
+      txtUsername: '',
+      txtPassword: '',
     };
   }
 
   render() {
-    if (this.context.token === "") {
+    if (this.context.token === '') {
       return (
         <div className="align-valign-center">
           <h2 className="text-center">ADMIN LOGIN</h2>
-
           <form>
             <table className="align-center">
               <tbody>
@@ -34,7 +33,6 @@ class Login extends Component {
                     />
                   </td>
                 </tr>
-
                 <tr>
                   <td>Password</td>
                   <td>
@@ -47,7 +45,6 @@ class Login extends Component {
                     />
                   </td>
                 </tr>
-
                 <tr>
                   <td></td>
                   <td>
@@ -71,7 +68,6 @@ class Login extends Component {
   // event handlers
   btnLoginClick(e) {
     e.preventDefault();
-
     const username = this.state.txtUsername;
     const password = this.state.txtPassword;
 
@@ -79,15 +75,14 @@ class Login extends Component {
       const account = { username, password };
       this.apiLogin(account);
     } else {
-      alert("Please input username and password");
+      alert('Please input username and password');
     }
   }
 
   // apis
   apiLogin(account) {
-    axios.post("/api/admin/login", account).then((res) => {
+    axios.post('/api/admin/login', account).then((res) => {
       const result = res.data;
-
       if (result.success === true) {
         this.context.setToken(result.token);
         this.context.setUsername(account.username);

@@ -13,26 +13,28 @@ class Menu extends Component {
             <li className="menu">
               <Link to="/admin/home">Home</Link>
             </li>
-            <li className=" menu ">
-              <Link to="/admin/category"> Category </Link>{" "}
+            <li className="menu">
+              <li className="menu">
+                <Link to="/admin/category">Category</Link>
+              </li>
             </li>
             <li className="menu">
               <Link to="/admin/product">Product</Link>
             </li>
-            <li className=" menu ">
-              <Link to=""> Order </Link>{" "}
+            <li className="menu">
+              <Link to="/admin/order">Order</Link>
             </li>
-            <li className=" menu ">
-              <Link to=""> Customer </Link>{" "}
+            <li className="menu">
+              <Link to="/admin/customer">Customer</Link>
             </li>
           </ul>
         </div>
 
         <div className="float-right">
           Hello <b>{this.context.username}</b> |{" "}
-          <a href="" onClick={() => this.lnkLogoutClick()}>
+          <Link to="/admin/home" onClick={() => this.lnkLogoutClick()}>
             Logout
-          </a>
+          </Link>
         </div>
 
         <div className="float-clear" />
@@ -40,6 +42,7 @@ class Menu extends Component {
     );
   }
 
+  // event handlers
   lnkLogoutClick() {
     this.context.setToken("");
     this.context.setUsername("");
