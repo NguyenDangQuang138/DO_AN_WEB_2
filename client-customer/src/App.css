@@ -761,7 +761,7 @@ input[type="submit"]:hover {
 }
 
 /* Content wrapper với padding */
-.hero-banner+section,
+.hero-banner + section,
 section {
   padding: 0 20px;
 }
@@ -1411,7 +1411,9 @@ section {
   justify-content: center;
   cursor: pointer;
   font-size: 13px;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
   margin-top: 10px;
 }
 
@@ -1738,4 +1740,11 @@ section {
     padding: 8px 15px !important;
     /* Căn chỉnh lại khung cho icon ☰ vuông vắn */
   }
+}
+.btn-cart {
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center; /* Căn giữa dọc */
+  justify-content: center; /* Căn giữa ngang */
+  text-align: center; /* Căn giữa text khi rớt dòng */
 }
