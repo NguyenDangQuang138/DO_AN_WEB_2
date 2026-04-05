@@ -7,6 +7,7 @@ import Category from "./CategoryComponent";
 import Product from "./ProductComponent";
 import Order from "./OrderComponent";
 import Customer from "./CustomerComponent";
+import News from "./NewsComponent";
 
 class Main extends Component {
   static contextType = MyContext;
@@ -27,6 +28,7 @@ class Main extends Component {
             <Route path="/admin/product" element={<Product />} />
             <Route path="/admin/order" element={<Order />} />
             <Route path="/admin/customer" element={<Customer />} />
+            <Route path="/admin/news" element={<News />} />
           </Routes>
         </div>
       );

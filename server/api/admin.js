@@ -11,6 +11,7 @@ const ProductDAO = require("../models/ProductDAO");
 const AdminDAO = require("../models/AdminDAO");
 const CategoryDAO = require("../models/CategoryDAO");
 const CustomerDAO = require("../models/CustomerDAO");
+const NewsDAO = require("../models/NewsDAO");
 
 // login
 router.post("/login", async function (req, res) {
@@ -195,5 +196,22 @@ router.get("/token", JwtUtil.checkToken, function (req, res) {
     token: token,
   });
 });
-
+// news
+router.get("/news", async (req, res) => {
+  const news = await NewsDAO.selectAll();
+  res.json(news);
+});
+router.post("/news", async (req, res) => {
+  const result = await NewsDAO.insert(req.body);
+  res.json(result);
+});
+router.put("/news/:id", async (req, res) => {
+  const news = { ...req.body, _id: req.params.id };
+  const result = await NewsDAO.update(news);
+  res.json(result);
+});
+router.delete("/news/:id", async (req, res) => {
+  const result = await NewsDAO.delete(req.params.id);
+  res.json(result);
+});
 module.exports = router;

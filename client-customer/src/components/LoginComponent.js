@@ -59,6 +59,9 @@ class Login extends Component {
                   />
                 </td>
               </tr>
+              <span>
+                Bạn chưa có tài khoản? <a href="./Signup">Đăng ký ngay</a>
+              </span>
             </tbody>
           </table>
         </form>

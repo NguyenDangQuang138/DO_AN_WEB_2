@@ -14,9 +14,7 @@ class Menu extends Component {
               <Link to="/admin/home">Home</Link>
             </li>
             <li className="menu">
-              <li className="menu">
-                <Link to="/admin/category">Category</Link>
-              </li>
+              <Link to="/admin/category">Category</Link>
             </li>
             <li className="menu">
               <Link to="/admin/product">Product</Link>
@@ -27,6 +25,10 @@ class Menu extends Component {
             <li className="menu">
               <Link to="/admin/customer">Customer</Link>
             </li>
+            {/* Đã thêm nút quản lý tin tức vào đây */}
+            <li className="menu">
+              <Link to="/admin/news">News</Link>
+            </li>
           </ul>
         </div>
 
@@ -36,7 +38,6 @@ class Menu extends Component {
             Logout
           </Link>
         </div>
-
         <div className="float-clear" />
       </div>
     );

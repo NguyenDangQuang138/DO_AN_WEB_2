@@ -14,36 +14,40 @@ class Product extends Component {
   render() {
     const prods = this.state.products.map((item) => {
       return (
-        <div key={item._id} className="inline">
-          <figure>
+        <div key={item._id} className="product-card">
+          <div className="product-img">
             <Link to={"/product/" + item._id}>
               <img
                 src={"data:image/jpg;base64," + item.image}
-                width="300px"
-                height="300px"
-                alt=""
+                alt={item.name}
               />
             </Link>
-            <figcaption className="text-center">
+          </div>
+
+          <div className="product-info">
+            <div className="product-name" title={item.name}>
               {item.name}
-              <br />
-              Price: {item.price}
-            </figcaption>
-          </figure>
+            </div>
+            <div className="product-price">Price: {item.price}</div>
+
+            <div className="product-actions">
+              <button className="btn btn-cart">Add to cart</button>
+              <button className="btn btn-buy">Buy now</button>
+            </div>
+          </div>
         </div>
       );
     });
 
     return (
-      <div className="text-center">
-        <h2 className="text-center">LIST PRODUCTS</h2>
-        {prods}
+      <div className="home-container">
+        <h2 className="section-title">LIST PRODUCTS</h2>
+        <div className="product-grid">{prods}</div>
       </div>
     );
   }
 
   componentDidMount() {
-    // first: /product/...
     const params = this.props.params;
     if (params.cid) {
       this.apiGetProductsByCatID(params.cid);
@@ -53,7 +57,6 @@ class Product extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // changed: /product/...
     const params = this.props.params;
     if (params.cid && params.cid !== prevProps.params.cid) {
       this.apiGetProductsByCatID(params.cid);
@@ -69,6 +72,7 @@ class Product extends Component {
       this.setState({ products: result });
     });
   }
+
   apiGetProductsByCatID(cid) {
     axios.get("/api/customer/products/category/" + cid).then((res) => {
       const result = res.data;

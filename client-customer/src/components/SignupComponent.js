@@ -96,6 +96,9 @@ class Signup extends Component {
                   />
                 </td>
               </tr>
+              <span>
+                Bạn đã có tài khoản? <a href="./Login">Đăng nhập ngay</a>
+              </span>
             </tbody>
           </table>
         </form>

@@ -61,6 +61,7 @@ const ProductDAO = {
       price: product.price,
       image: product.image,
       category: product.category,
+      details: product.details, // BỔ SUNG DÒNG NÀY ĐỂ MONGODB CHỊU LƯU MÔ TẢ
     };
 
     const result = await Models.Product.findByIdAndUpdate(
@@ -77,6 +78,11 @@ const ProductDAO = {
   },
   async selectByKeyword(keyword) {
     const query = { name: { $regex: new RegExp(keyword, "i") } };
+    const products = await Models.Product.find(query).exec();
+    return products;
+  },
+  async selectAll() {
+    const query = {};
     const products = await Models.Product.find(query).exec();
     return products;
   },

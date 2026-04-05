@@ -63,6 +63,17 @@ const OrderSchema = new mongoose.Schema(
   },
   { versionKey: false },
 );
+// Thêm đoạn này vào cùng chỗ với các Schema khác
+const NewsSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    summary: { type: String, required: true }, // Đoạn tóm tắt ngắn ngoài trang chủ
+    content: { type: String, required: true }, // Lưu toàn bộ nội dung (bao gồm thẻ HTML)
+    image: { type: String, required: true }, // Lưu ảnh bìa dạng base64
+    cdate: { type: Number, default: Date.now }, // Tự động lấy ngày giờ đăng bài
+  },
+  { versionKey: false },
+);
 
 // Models
 const Admin = mongoose.model("Admin", AdminSchema);
@@ -70,6 +81,7 @@ const Category = mongoose.model("Category", CategorySchema);
 const Customer = mongoose.model("Customer", CustomerSchema);
 const Product = mongoose.model("Product", ProductSchema);
 const Order = mongoose.model("Order", OrderSchema);
+const News = mongoose.model("news", NewsSchema);
 
 module.exports = {
   Admin,
@@ -77,4 +89,5 @@ module.exports = {
   Customer,
   Product,
   Order,
+  News,
 };

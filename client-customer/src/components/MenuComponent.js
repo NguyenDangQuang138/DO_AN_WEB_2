@@ -1,75 +1,85 @@
-import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "../utils/withRouter";
+import MyContext from "../contexts/MyContext";
 
 class Menu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: [],
-      txtKeyword: "",
-    };
-  }
+  static contextType = MyContext;
 
   render() {
-    const cates = this.state.categories.map((item) => {
-      return (
-        <li key={item._id} className="menu">
-          <Link to={"/product/category/" + item._id}>{item.name}</Link>
-        </li>
-      );
-    });
-
     return (
-      <div className="border-bottom">
-        <div className="float-left">
-          <ul className="menu">
-            <li className="menu">
-              <Link to="/">Home</Link>
-            </li>
-            {cates}
-          </ul>
-        </div>
-
-        <div className="float-right">
-          <form className="search">
-            <input
-              type="search"
-              placeholder="Enter keyword"
-              className="keyword"
-              value={this.state.txtKeyword}
-              onChange={(e) => {
-                this.setState({ txtKeyword: e.target.value });
-              }}
+      <div className="border-bottom sticky-menu">
+        <div className="menu-header">
+          {/* Logo */}
+          <Link to="/home" className="logo-container">
+            <img
+              src="/image/Gemini_Generated_Image_4kii5o4kii5o4kii.png"
+              alt="Logo"
+              className="logo-img"
             />
-            <input
-              type="submit"
-              value="SEARCH"
-              onClick={(e) => this.btnSearchClick(e)}
-            />
-          </form>
-        </div>
+          </Link>
 
-        <div className="float-clear" />
+          {/* Các link điều hướng */}
+          <Link className="category-link home-link" to="/">
+            Trang chủ
+          </Link>
+          <Link className="category-link home-link" to="/shop">
+            Sản phẩm
+          </Link>
+          <Link className="category-link home-link" to="/news">
+            Tin tức
+          </Link>
+          <Link className="category-link home-link" to="/contact">
+            Liên hệ
+          </Link>
+
+          {/* Khối Auth (Login/Signup/Active) */}
+          <div className="user-auth-section">
+            {this.context.token === "" ? (
+              <div>
+                <Link to="/login" className="category-link home-link">
+                  Login
+                </Link>{" "}
+                |{" "}
+                <Link to="/signup" className="category-link home-link">
+                  Sign-up
+                </Link>{" "}
+                |{" "}
+                <Link to="/active" className="category-link home-link">
+                  Active
+                </Link>
+              </div>
+            ) : (
+              <div>
+                Hello <b>{this.context.customer.name}</b> |{" "}
+                <Link
+                  to="/home"
+                  className="category-link home-link"
+                  onClick={() => this.lnkLogoutClick()}
+                >
+                  Logout
+                </Link>{" "}
+                |{" "}
+                <Link to="/myprofile" className="category-link home-link">
+                  My profile
+                </Link>{" "}
+                |{" "}
+                <Link to="/myorders" className="category-link home-link">
+                  My orders
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
-  // event-handlers
-  btnSearchClick(e) {
-    e.preventDefault();
-    this.props.navigate("/product/search/" + this.state.txtKeyword);
-  }
-  componentDidMount() {
-    this.apiGetCategories();
-  }
 
-  // apis
-  apiGetCategories() {
-    axios.get("/api/customer/categories").then((res) => {
-      const result = res.data;
-      this.setState({ categories: result });
-    });
+  // Hàm xử lý Đăng xuất
+  lnkLogoutClick() {
+    this.context.setToken("");
+    this.context.setCustomer(null);
+    this.context.setMycart([]);
   }
 }
 

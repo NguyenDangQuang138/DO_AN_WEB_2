@@ -10,6 +10,7 @@ const OrderDAO = require("../models/OrderDAO");
 const CustomerDAO = require("../models/CustomerDAO");
 const CategoryDAO = require("../models/CategoryDAO");
 const ProductDAO = require("../models/ProductDAO");
+const NewsDAO = require("../models/NewsDAO");
 
 // mycart
 router.post("/checkout", JwtUtil.checkToken, async function (req, res) {
@@ -53,6 +54,7 @@ router.get("/products/search/:keyword", async function (req, res) {
   const products = await ProductDAO.selectByKeyword(keyword);
   res.json(products);
 });
+
 router.get("/products/category/:cid", async function (req, res) {
   const _cid = req.params.cid;
   const products = await ProductDAO.selectByCatID(_cid);
@@ -68,7 +70,16 @@ router.get("/products/hot", async function (req, res) {
   const products = await ProductDAO.selectTopHot(10);
   res.json(products);
 });
-
+// Thêm API lấy TẤT CẢ sản phẩm
+router.get("/products", async (req, res) => {
+  try {
+    // Giả sử DAO của bạn tên là ProductDAO và có hàm selectAll()
+    const products = await ProductDAO.selectAll();
+    res.json(products);
+  } catch (error) {
+    res.json([]);
+  }
+});
 router.get("/products/:id", async function (req, res) {
   const _id = req.params.id;
   const product = await ProductDAO.selectByID(_id);
@@ -185,5 +196,13 @@ router.get("/token", JwtUtil.checkToken, function (req, res) {
     token: token,
   });
 });
-
+//news
+router.get("/news", async (req, res) => {
+  const news = await NewsDAO.selectAll();
+  res.json(news);
+});
+router.get("/news/:id", async (req, res) => {
+  const news = await NewsDAO.selectByID(req.params.id);
+  res.json(news);
+});
 module.exports = router;
