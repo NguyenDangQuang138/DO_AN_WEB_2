@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "../utils/withRouter";
+import MyContext from "../contexts/MyContext"; // BỔ SUNG: Import Context để xài giỏ hàng
 
 class Product extends Component {
+  static contextType = MyContext; // BỔ SUNG: Kết nối với giỏ hàng toàn cục
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,8 +34,16 @@ class Product extends Component {
             <div className="product-price">Price: {item.price}</div>
 
             <div className="product-actions">
-              <button className="btn btn-cart">Add to cart</button>
-              <button className="btn btn-buy">Buy now</button>
+              {/* BỔ SUNG: Gắn sự kiện onClick gọi hàm addToCart */}
+              <button
+                className="btn btn-cart"
+                onClick={() => this.addToCart(item)}
+              >
+                Add to cart
+              </button>
+              <button className="btn btn-buy" onClick={() => this.buyNow(item)}>
+                Buy now
+              </button>
             </div>
           </div>
         </div>
@@ -65,7 +76,65 @@ class Product extends Component {
     }
   }
 
-  // apis
+  // ==========================================
+  // BỔ SUNG CÁC HÀM XỬ LÝ GIỎ HÀNG (BƯỚC 4)
+  // ==========================================
+
+  addToCart(product) {
+    if (!this.context.token) {
+      alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+      this.props.navigate("/login");
+      return;
+    }
+
+    const mycart = this.context.mycart;
+    const quantity = 1;
+    const index = mycart.findIndex((x) => x.product._id === product._id);
+
+    if (index === -1) {
+      const newItem = { product: product, quantity: quantity };
+      mycart.push(newItem);
+    } else {
+      mycart[index].quantity += quantity;
+    }
+
+    this.context.setMycart(mycart);
+    localStorage.setItem("mycart", JSON.stringify(mycart));
+
+    // GỌI ĐƯỜNG DÂY NÓNG: Báo Server cất hàng vào Database
+    this.apiUpdateCart(mycart);
+
+    alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
+  }
+
+  buyNow(product) {
+    if (!this.context.token) {
+      alert("Vui lòng đăng nhập để mua sản phẩm!");
+      this.props.navigate("/login");
+      return;
+    }
+    alert(`Mua ngay sản phẩm: "${product.name}" - Giá: ${product.price} VND`);
+  }
+
+  // Hàm gọi API cập nhật Database (Cái mà bạn bị khựng ở Bước 4 đây nè)
+  apiUpdateCart(mycart) {
+    if (this.context.customer) {
+      const body = {
+        customerId: this.context.customer._id,
+        cart: mycart,
+      };
+      axios
+        .put("/api/customer/cart", body)
+        .then((res) => {
+          console.log("Phản hồi từ Server:", res.data.message);
+        })
+        .catch((err) => {
+          console.error("Lỗi khi lưu giỏ hàng: ", err);
+        });
+    }
+  }
+
+  // --- apis ---
   apiGetProductsByKeyword(keyword) {
     axios.get("/api/customer/products/search/" + keyword).then((res) => {
       const result = res.data;

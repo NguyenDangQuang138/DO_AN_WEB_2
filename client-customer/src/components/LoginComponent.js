@@ -84,14 +84,30 @@ class Login extends Component {
     }
   }
 
+  // ==========================================
+  // ĐÃ CẬP NHẬT HÀM LOGIN ĐỂ LẤY LẠI GIỎ HÀNG
+  // ==========================================
   apiLogin(account) {
     axios.post("/api/customer/login", account).then((res) => {
       const result = res.data;
 
       if (result.success === true) {
+        // 1. Lưu token và thông tin user
         this.context.setToken(result.token);
         this.context.setCustomer(result.customer);
 
+        // 2. KHÔI PHỤC GIỎ HÀNG TỪ DATABASE VÀO TRÌNH DUYỆT
+        if (result.customer.cart && result.customer.cart.length > 0) {
+          this.context.setMycart(result.customer.cart);
+          localStorage.setItem("mycart", JSON.stringify(result.customer.cart));
+          console.log("Đã khôi phục giỏ hàng từ Database!");
+        } else {
+          this.context.setMycart([]);
+          localStorage.removeItem("mycart");
+          console.log("Giỏ hàng trên Database đang trống.");
+        }
+
+        // 3. Chuyển hướng
         this.props.navigate("/home");
       } else {
         alert(result.message);

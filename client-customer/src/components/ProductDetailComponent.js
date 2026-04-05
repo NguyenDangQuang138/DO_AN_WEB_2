@@ -53,7 +53,7 @@ class ProductDetail extends Component {
     if (prod != null) {
       return (
         <div className="home-container">
-          {/* PHẦN 1: CHI TIẾT SẢN PHẨM (Code cũ của bạn) */}
+          {/* PHẦN 1: CHI TIẾT SẢN PHẨM */}
           <div className="align-center" style={{ marginBottom: "50px" }}>
             <h2 className="section-title">PRODUCT DETAILS</h2>
             <figure
@@ -149,7 +149,7 @@ class ProductDetail extends Component {
             </figure>
           </div>
 
-          {/* PHẦN 2: SẢN PHẨM TƯƠNG TỰ (Mới thêm) */}
+          {/* PHẦN 2: SẢN PHẨM TƯƠNG TỰ */}
           {this.state.similarProducts.length > 0 && (
             <section
               style={{
@@ -212,6 +212,10 @@ class ProductDetail extends Component {
       }
       this.context.setMycart(mycart);
       localStorage.setItem("mycart", JSON.stringify(mycart));
+
+      // BỔ SUNG: Gọi API cập nhật Database
+      this.apiUpdateCart(mycart);
+
       alert(`Đã thêm ${quantity} x "${product.name}" vào giỏ hàng!`);
     } else {
       alert("Please input quantity");
@@ -234,7 +238,31 @@ class ProductDetail extends Component {
     }
     this.context.setMycart(mycart);
     localStorage.setItem("mycart", JSON.stringify(mycart));
+
+    // BỔ SUNG: Gọi API cập nhật Database
+    this.apiUpdateCart(mycart);
+
     alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
+  }
+
+  // ==========================================
+  // HÀM GỬI LÊN DATABASE
+  // ==========================================
+  apiUpdateCart(mycart) {
+    if (this.context.customer) {
+      const body = {
+        customerId: this.context.customer._id,
+        cart: mycart,
+      };
+      axios
+        .put("/api/customer/cart", body)
+        .then((res) => {
+          console.log("Cập nhật DB thành công!");
+        })
+        .catch((err) => {
+          console.error("Lỗi khi lưu giỏ hàng: ", err);
+        });
+    }
   }
 
   // --- APIS ---

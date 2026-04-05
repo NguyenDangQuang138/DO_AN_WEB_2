@@ -170,7 +170,9 @@ class Home extends Component {
     this.apiGetNews();
   }
 
-  // Event handlers
+  // ==========================================
+  // XỬ LÝ GIỎ HÀNG
+  // ==========================================
   addToCart(product) {
     if (!this.context.token) {
       alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
@@ -191,6 +193,10 @@ class Home extends Component {
 
     this.context.setMycart(mycart);
     localStorage.setItem("mycart", JSON.stringify(mycart));
+
+    // BỔ SUNG GỌI API: Cất vào Database
+    this.apiUpdateCart(mycart);
+
     alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
   }
 
@@ -203,7 +209,25 @@ class Home extends Component {
     alert(`Mua ngay sản phẩm: "${product.name}" - Giá: ${product.price} VND`);
   }
 
-  // apis
+  // --- HÀM GỬI LÊN DATABASE ---
+  apiUpdateCart(mycart) {
+    if (this.context.customer) {
+      const body = {
+        customerId: this.context.customer._id,
+        cart: mycart,
+      };
+      axios
+        .put("/api/customer/cart", body)
+        .then((res) => {
+          console.log("Phản hồi từ Server:", res.data.message);
+        })
+        .catch((err) => {
+          console.error("Lỗi khi lưu giỏ hàng: ", err);
+        });
+    }
+  }
+
+  // --- apis ---
   apiGetNewProducts() {
     axios.get("/api/customer/products/new").then((res) => {
       const result = res.data;

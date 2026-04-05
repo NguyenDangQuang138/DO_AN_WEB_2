@@ -31,6 +31,18 @@ router.post("/checkout", JwtUtil.checkToken, async function (req, res) {
 
   res.json(result);
 });
+// Đường dây nóng: Nhận ID khách hàng và Giỏ hàng từ React gửi lên để cất vào DB
+router.put("/cart", async function (req, res) {
+  const customerId = req.body.customerId;
+  const cart = req.body.cart;
+
+  if (customerId && cart) {
+    const result = await CustomerDAO.updateCart(customerId, cart);
+    res.json({ success: true, message: "Đã lưu giỏ hàng vào Database!" });
+  } else {
+    res.json({ success: false, message: "Thiếu dữ liệu" });
+  }
+});
 // myorders
 router.get(
   "/orders/customer/:cid",

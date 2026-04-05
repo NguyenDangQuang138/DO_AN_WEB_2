@@ -93,6 +93,14 @@ const CustomerDAO = {
     const customer = await Models.Customer.findById(_id).exec();
     return customer;
   },
+  async updateCart(_id, cart) {
+    const result = await Models.Customer.findByIdAndUpdate(
+      _id,
+      { cart: cart },
+      { new: true },
+    );
+    return result;
+  },
 };
 
 module.exports = CustomerDAO;

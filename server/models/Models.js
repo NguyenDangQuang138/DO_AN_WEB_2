@@ -30,6 +30,7 @@ const CustomerSchema = new mongoose.Schema(
     token: String,
     activeOTP: String,
     otpCreatedAt: Date,
+    cart: { type: Array, default: [] },
   },
   { versionKey: false },
 );

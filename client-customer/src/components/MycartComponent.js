@@ -33,7 +33,8 @@ class Mycart extends Component {
             <button
               type="button"
               className="cart-item-remove-btn"
-              onClick={() => this.lnkRemoveClick(item.product._id)}>
+              onClick={() => this.lnkRemoveClick(item.product._id)}
+            >
               Xóa khỏi giỏ
             </button>
           </div>
@@ -47,7 +48,8 @@ class Mycart extends Component {
             <div className="cart-item-qty-controls">
               <button
                 className="qty-btn"
-                onClick={() => this.updateQuantity(item.product._id, -1)}>
+                onClick={() => this.updateQuantity(item.product._id, -1)}
+              >
                 -
               </button>
               <input
@@ -58,7 +60,8 @@ class Mycart extends Component {
               />
               <button
                 className="qty-btn"
-                onClick={() => this.updateQuantity(item.product._id, 1)}>
+                onClick={() => this.updateQuantity(item.product._id, 1)}
+              >
                 +
               </button>
             </div>
@@ -83,7 +86,8 @@ class Mycart extends Component {
             <div className="cart-items-list">{mycartItems}</div>
           ) : (
             <div
-              style={{ textAlign: "center", padding: "40px", color: "#888" }}>
+              style={{ textAlign: "center", padding: "40px", color: "#888" }}
+            >
               Giỏ hàng của bạn đang trống. Hãy quay lại cửa hàng để mua sắm nhé!
             </div>
           )}
@@ -100,14 +104,16 @@ class Mycart extends Component {
                   className={`delivery-btn ${this.state.deliveryMethod === "Giao tận nơi" ? "active" : ""}`}
                   onClick={() =>
                     this.setState({ deliveryMethod: "Giao tận nơi" })
-                  }>
+                  }
+                >
                   🚚 Giao tận nơi
                 </button>
                 <button
                   className={`delivery-btn ${this.state.deliveryMethod === "Tự đến lấy" ? "active" : ""}`}
                   onClick={() =>
                     this.setState({ deliveryMethod: "Tự đến lấy" })
-                  }>
+                  }
+                >
                   📦 Tự đến lấy
                 </button>
               </div>
@@ -119,9 +125,8 @@ class Mycart extends Component {
                 className="checkout-note"
                 placeholder="Nhập ghi chú (VD: Giao giờ hành chính, gọi trước khi giao...)"
                 value={this.state.note}
-                onChange={(e) =>
-                  this.setState({ note: e.target.value })
-                }></textarea>
+                onChange={(e) => this.setState({ note: e.target.value })}
+              ></textarea>
             </div>
 
             <hr
@@ -148,7 +153,8 @@ class Mycart extends Component {
 
             <button
               className="btn-checkout"
-              onClick={() => this.lnkCheckoutClick()}>
+              onClick={() => this.lnkCheckoutClick()}
+            >
               ĐẶT HÀNG
             </button>
 
@@ -158,7 +164,8 @@ class Mycart extends Component {
                 color: "#888",
                 textAlign: "center",
                 marginTop: "15px",
-              }}>
+              }}
+            >
               Bằng việc bấm vào nút "Đặt hàng", bạn đồng ý với chính sách của
               chúng tôi.
             </p>
@@ -177,11 +184,14 @@ class Mycart extends Component {
 
     if (index !== -1) {
       const newQuantity = mycart[index].quantity + change;
-      // Chỉ cho phép giảm tối đa về 1, không cho về 0 (nếu muốn xóa thì bấm nút Xóa)
+      // Chỉ cho phép giảm tối đa về 1, không cho về 0
       if (newQuantity >= 1) {
         mycart[index].quantity = newQuantity;
-        this.context.setMycart([...mycart]); // Cập nhật lại Context
-        localStorage.setItem("mycart", JSON.stringify(mycart)); // Lưu lại vào LocalStorage
+        this.context.setMycart([...mycart]);
+        localStorage.setItem("mycart", JSON.stringify(mycart));
+
+        // BỔ SUNG: Báo Server cập nhật số lượng
+        this.apiUpdateCart(mycart);
       }
     }
   }
@@ -193,6 +203,9 @@ class Mycart extends Component {
       mycart.splice(index, 1);
       this.context.setMycart([...mycart]);
       localStorage.setItem("mycart", JSON.stringify(mycart));
+
+      // BỔ SUNG: Báo Server cập nhật giỏ hàng sau khi xóa
+      this.apiUpdateCart(mycart);
     }
   }
 
@@ -216,6 +229,26 @@ class Mycart extends Component {
     }
   }
 
+  // ==========================================
+  // HÀM GỬI LÊN DATABASE
+  // ==========================================
+  apiUpdateCart(mycart) {
+    if (this.context.customer) {
+      const body = {
+        customerId: this.context.customer._id,
+        cart: mycart,
+      };
+      axios
+        .put("/api/customer/cart", body)
+        .then((res) => {
+          console.log("Cập nhật DB thành công!");
+        })
+        .catch((err) => {
+          console.error("Lỗi khi lưu giỏ hàng: ", err);
+        });
+    }
+  }
+
   // --- APIS ---
   apiCheckout(total, items, customer) {
     const body = { total: total, items: items, customer: customer };
@@ -227,8 +260,14 @@ class Mycart extends Component {
       const result = res.data;
       if (result) {
         alert("Đặt hàng thành công! Cảm ơn bạn đã mua sắm.");
+
+        // Xóa trắng giỏ hàng trên trình duyệt
         this.context.setMycart([]);
         localStorage.removeItem("mycart");
+
+        // BỔ SUNG: Xóa trắng giỏ hàng dưới Database để chuẩn bị đơn mới
+        this.apiUpdateCart([]);
+
         this.props.navigate("/home");
       } else {
         alert("Đặt hàng thất bại, vui lòng thử lại sau!");
