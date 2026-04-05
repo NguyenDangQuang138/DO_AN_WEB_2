@@ -511,3 +511,108 @@ input.keyword {
   color: #444;
   white-space: pre-line; /* Giữ nguyên dấu xuống dòng khách gõ */
 }
+/* Container tổng chia 2 cột */
+.admin-product-page-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  align-items: flex-start; /* Giúp các cột không bị kéo dài vô lý */
+}
+
+/* Cột bên trái: Danh sách */
+.admin-list-section {
+  flex: 1.2; /* Chiếm khoảng 55-60% */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* Cột bên phải: Form chi tiết */
+.admin-detail-section {
+  flex: 1; /* Chiếm phần còn lại */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  position: sticky; /* Form dính ở trên khi cuộn danh sách dài */
+  top: 20px;
+}
+
+/* Định dạng bảng danh sách */
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.datatable th {
+  background-color: #ffcc00;
+  padding: 12px 8px;
+  border: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+}
+
+.datatable td {
+  padding: 10px 5px;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.datatable tr:hover {
+  background-color: #e8f4fd;
+  cursor: pointer;
+}
+
+/* Định dạng hình ảnh trong bảng */
+.datatable img {
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+/* Phân trang */
+.pagination-wrapper {
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.link {
+  color: #007bff;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: 0.2s;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Fix lỗi tràn nội dung trong Quill (Editor) */
+.ql-editor {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Responsive cho màn hình nhỏ (iPad/Mobile) */
+@media (max-width: 1100px) {
+  .admin-product-page-container {
+    flex-direction: column;
+  }
+  .admin-list-section,
+  .admin-detail-section {
+    width: 100%;
+  }
+}

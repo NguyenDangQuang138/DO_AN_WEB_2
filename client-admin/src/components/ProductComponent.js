@@ -61,33 +61,36 @@ class Product extends Component {
       },
     );
     return (
-      <div>
-        <div className="float-left">
+      <div className="admin-product-page-container">
+        {/* CỘT TRÁI: DANH SÁCH SẢN PHẨM */}
+        <div className="admin-list-section">
           <h2 className="text-center">PRODUCT LIST</h2>
-          <table className="datatable" border="1">
-            <tbody>
-              <tr className="datatable">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Creation date</th>
-                <th>Category</th>
-                <th>Image</th>
-              </tr>
-              {prods}
-              <tr>
-                <td colSpan="6">{pagination}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="table-wrapper">
+            <table className="datatable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Created Date</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>{prods}</tbody>
+            </table>
+          </div>
+          <div className="pagination-wrapper">{pagination}</div>
         </div>
-        <div className="inline" />
-        <ProductDetail
-          item={this.state.itemSelected}
-          curPage={this.state.curPage}
-          updateProducts={this.updateProducts}
-        />
-        <div className="float-clear" />
+
+        {/* CỘT PHẢI: CHI TIẾT SẢN PHẨM (Form + Editor) */}
+        <div className="admin-detail-section">
+          <ProductDetail
+            item={this.state.itemSelected}
+            curPage={this.state.curPage}
+            updateProducts={this.updateProducts}
+          />
+        </div>
       </div>
     );
   }

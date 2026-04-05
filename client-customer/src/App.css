@@ -1276,7 +1276,7 @@ section {
   font-size: 16px;
   line-height: 1.8;
   color: #333;
-  text-align: justify;
+  text-align: left !important;
 
   /* BỔ SUNG 4 DÒNG NÀY VÀO ĐỂ TRỊ LỖI TRÀN CHỮ */
   overflow-wrap: break-word;
@@ -1747,4 +1747,43 @@ section {
   align-items: center; /* Căn giữa dọc */
   justify-content: center; /* Căn giữa ngang */
   text-align: center; /* Căn giữa text khi rớt dòng */
+}
+.product-content-body {
+  /* Cho phép chữ tự động xuống dòng khi chạm mép khung */
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+
+  /* Căn lề đều 2 bên cho chuyên nghiệp */
+  text-align: justify;
+
+  /* Đảm bảo nội dung không bao giờ vượt quá chiều ngang của cha */
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix lỗi nếu Admin chèn ảnh quá to */
+.product-content-body img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Fix lỗi nếu Admin chèn bảng (table) quá rộng */
+.product-content-body table {
+  width: 100% !important;
+  table-layout: fixed; /* Ép các ô trong bảng phải co lại */
+}
+/* Fix lỗi tràn chữ trong khung soạn thảo Quill */
+.ql-editor {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important; /* Quan trọng: để chữ tự xuống dòng */
+  text-align: justify;
+}
+
+/* Đảm bảo khung soạn thảo không phình to ra ngoài cha */
+.quill-editor,
+.admin-quill-editor {
+  max-width: 100%;
+  overflow-x: hidden;
 }

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "../utils/withRouter";
 import MyContext from "../contexts/MyContext"; // BỔ SUNG: Import Context để xài giỏ hàng
+import CategoryMenu from "./CategoryMenuComponent";
 
 class Product extends Component {
   static contextType = MyContext; // BỔ SUNG: Kết nối với giỏ hàng toàn cục
@@ -52,6 +53,7 @@ class Product extends Component {
 
     return (
       <div className="home-container">
+        <CategoryMenu />
         <h2 className="section-title">LIST PRODUCTS</h2>
         <div className="product-grid">{prods}</div>
       </div>
