@@ -5,8 +5,8 @@ class Active extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      txtID: "",
-      txtToken: "",
+      txtEmail: "",
+      txtOTP: "",
     };
   }
 
@@ -19,26 +19,27 @@ class Active extends Component {
           <table className="align-center">
             <tbody>
               <tr>
-                <td>ID</td>
+                <td>Email</td>
                 <td>
                   <input
-                    type="text"
-                    value={this.state.txtID}
+                    type="email"
+                    value={this.state.txtEmail}
                     onChange={(e) => {
-                      this.setState({ txtID: e.target.value });
+                      this.setState({ txtEmail: e.target.value });
                     }}
                   />
                 </td>
               </tr>
 
               <tr>
-                <td>Token</td>
+                <td>OTP Code</td>
                 <td>
                   <input
                     type="text"
-                    value={this.state.txtToken}
+                    placeholder="Enter 6-digit OTP"
+                    value={this.state.txtOTP}
                     onChange={(e) => {
-                      this.setState({ txtToken: e.target.value });
+                      this.setState({ txtOTP: e.target.value });
                     }}
                   />
                 </td>
@@ -64,26 +65,26 @@ class Active extends Component {
   btnActiveClick(e) {
     e.preventDefault();
 
-    const id = this.state.txtID;
-    const token = this.state.txtToken;
+    const email = this.state.txtEmail;
+    const otp = this.state.txtOTP;
 
-    if (id && token) {
-      this.apiActive(id, token);
+    if (email && otp) {
+      this.apiActive(email, otp);
     } else {
-      alert("Please input id and token");
+      alert("Please input email and OTP code");
     }
   }
 
-  apiActive(id, token) {
-    const body = { id: id, token: token };
+  apiActive(email, otp) {
+    const body = { email: email, otp: otp };
 
     axios.post("/api/customer/active", body).then((res) => {
       const result = res.data;
 
-      if (result) {
-        alert("OK BABY!");
+      if (result.success) {
+        alert("Account activated successfully!");
       } else {
-        alert("SORRY BABY!");
+        alert("Activation failed: " + result.message);
       }
     });
   }
