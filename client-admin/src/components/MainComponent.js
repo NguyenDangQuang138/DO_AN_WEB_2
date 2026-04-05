@@ -8,7 +8,7 @@ import Product from "./ProductComponent";
 import Order from "./OrderComponent";
 import Customer from "./CustomerComponent";
 import News from "./NewsComponent";
-
+import Contact from "./ContactComponent";
 class Main extends Component {
   static contextType = MyContext;
 
@@ -29,6 +29,7 @@ class Main extends Component {
             <Route path="/admin/order" element={<Order />} />
             <Route path="/admin/customer" element={<Customer />} />
             <Route path="/admin/news" element={<News />} />
+            <Route path="/admin/contact" element={<Contact />} />
           </Routes>
         </div>
       );

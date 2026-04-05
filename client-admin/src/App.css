@@ -319,3 +319,25 @@ input.keyword {
 .btn-delete {
   background-color: #ff0000;
 }
+.contact-detail-content p {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.message-box {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  white-space: pre-line; /* Giữ nguyên các dấu xuống dòng của khách */
+  line-height: 1.6;
+}
+
+.btn-delete-small {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}

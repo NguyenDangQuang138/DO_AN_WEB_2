@@ -67,7 +67,7 @@ const OrderSchema = new mongoose.Schema(
   },
   { versionKey: false },
 );
-// Thêm đoạn này vào cùng chỗ với các Schema khác
+
 const NewsSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
@@ -79,6 +79,19 @@ const NewsSchema = new mongoose.Schema(
   { versionKey: false },
 );
 
+const ContactSchema = new mongoose.Schema(
+  {
+    topic: String,
+    title: String,
+    content: String,
+    fullname: String,
+    email: String,
+    phone: String,
+    cdate: Number,
+    status: { type: String, default: "NEW" },
+  },
+  { versionKey: false },
+);
 // Models
 const Admin = mongoose.model("Admin", AdminSchema);
 const Category = mongoose.model("Category", CategorySchema);
@@ -86,6 +99,7 @@ const Customer = mongoose.model("Customer", CustomerSchema);
 const Product = mongoose.model("Product", ProductSchema);
 const Order = mongoose.model("Order", OrderSchema);
 const News = mongoose.model("news", NewsSchema);
+const Contact = mongoose.model("Contact", ContactSchema, "contacts");
 
 module.exports = {
   Admin,
@@ -94,4 +108,5 @@ module.exports = {
   Product,
   Order,
   News,
+  Contact,
 };

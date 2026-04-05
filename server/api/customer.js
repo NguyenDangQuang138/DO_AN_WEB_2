@@ -11,6 +11,7 @@ const CustomerDAO = require("../models/CustomerDAO");
 const CategoryDAO = require("../models/CategoryDAO");
 const ProductDAO = require("../models/ProductDAO");
 const NewsDAO = require("../models/NewsDAO");
+const ContactDAO = require("../models/ContactDAO");
 
 // mycart
 router.post("/checkout", JwtUtil.checkToken, async function (req, res) {
@@ -227,3 +228,9 @@ router.get("/news/:id", async (req, res) => {
   res.json(news);
 });
 module.exports = router;
+//Contact
+router.post("/contact", async function (req, res) {
+  const contact = { ...req.body, cdate: new Date().getTime() };
+  const result = await ContactDAO.insert(contact);
+  res.json(result);
+});

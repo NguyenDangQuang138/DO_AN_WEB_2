@@ -12,6 +12,7 @@ const AdminDAO = require("../models/AdminDAO");
 const CategoryDAO = require("../models/CategoryDAO");
 const CustomerDAO = require("../models/CustomerDAO");
 const NewsDAO = require("../models/NewsDAO");
+const ContactDAO = require("../models/ContactDAO");
 
 // login
 router.post("/login", async function (req, res) {
@@ -216,6 +217,16 @@ router.put("/news/:id", async (req, res) => {
 });
 router.delete("/news/:id", async (req, res) => {
   const result = await NewsDAO.delete(req.params.id);
+  res.json(result);
+});
+// contact
+router.get("/contacts", JwtUtil.checkToken, async function (req, res) {
+  const contacts = await ContactDAO.selectAll();
+  res.json(contacts);
+});
+
+router.delete("/contacts/:id", JwtUtil.checkToken, async function (req, res) {
+  const result = await ContactDAO.delete(req.params.id);
   res.json(result);
 });
 module.exports = router;

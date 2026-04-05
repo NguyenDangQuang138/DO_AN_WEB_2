@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./styles/home.css"; // Dùng chung file css hiện tại
+import axios from "axios";
 
 class Contact extends Component {
   constructor(props) {
@@ -133,6 +134,36 @@ class Contact extends Component {
       email: "",
       phone: "",
     });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    const body = {
+      topic: this.state.topic,
+      title: this.state.title,
+      content: this.state.content,
+      fullname: this.state.fullname,
+      email: this.state.email,
+      phone: this.state.phone,
+    };
+
+    axios
+      .post("/api/customer/contact", body)
+      .then((res) => {
+        if (res.data) {
+          alert("Gửi liên hệ thành công! Chúng tôi sẽ phản hồi sớm nhất.");
+          this.setState({
+            topic: "",
+            title: "",
+            content: "",
+            fullname: "",
+            email: "",
+            phone: "",
+          });
+        } else {
+          alert("Có lỗi xảy ra, vui lòng thử lại!");
+        }
+      })
+      .catch((err) => console.error(err));
   }
 }
 

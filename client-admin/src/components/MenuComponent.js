@@ -25,9 +25,11 @@ class Menu extends Component {
             <li className="menu">
               <Link to="/admin/customer">Customer</Link>
             </li>
-            {/* Đã thêm nút quản lý tin tức vào đây */}
             <li className="menu">
               <Link to="/admin/news">News</Link>
+            </li>
+            <li className="menu">
+              <Link to="/admin/contact">Contact</Link>
             </li>
           </ul>
         </div>
