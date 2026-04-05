@@ -30,12 +30,12 @@ class Mycart extends Component {
             <div className="cart-item-category">
               Loại: {item.product.category.name}
             </div>
-            <span
-              className="cart-item-remove"
-              onClick={() => this.lnkRemoveClick(item.product._id)}
-            >
+            <button
+              type="button"
+              className="cart-item-remove-btn"
+              onClick={() => this.lnkRemoveClick(item.product._id)}>
               Xóa khỏi giỏ
-            </span>
+            </button>
           </div>
 
           <div className="cart-item-price">
@@ -47,8 +47,7 @@ class Mycart extends Component {
             <div className="cart-item-qty-controls">
               <button
                 className="qty-btn"
-                onClick={() => this.updateQuantity(item.product._id, -1)}
-              >
+                onClick={() => this.updateQuantity(item.product._id, -1)}>
                 -
               </button>
               <input
@@ -59,8 +58,7 @@ class Mycart extends Component {
               />
               <button
                 className="qty-btn"
-                onClick={() => this.updateQuantity(item.product._id, 1)}
-              >
+                onClick={() => this.updateQuantity(item.product._id, 1)}>
                 +
               </button>
             </div>
@@ -85,8 +83,7 @@ class Mycart extends Component {
             <div className="cart-items-list">{mycartItems}</div>
           ) : (
             <div
-              style={{ textAlign: "center", padding: "40px", color: "#888" }}
-            >
+              style={{ textAlign: "center", padding: "40px", color: "#888" }}>
               Giỏ hàng của bạn đang trống. Hãy quay lại cửa hàng để mua sắm nhé!
             </div>
           )}
@@ -103,16 +100,14 @@ class Mycart extends Component {
                   className={`delivery-btn ${this.state.deliveryMethod === "Giao tận nơi" ? "active" : ""}`}
                   onClick={() =>
                     this.setState({ deliveryMethod: "Giao tận nơi" })
-                  }
-                >
+                  }>
                   🚚 Giao tận nơi
                 </button>
                 <button
                   className={`delivery-btn ${this.state.deliveryMethod === "Tự đến lấy" ? "active" : ""}`}
                   onClick={() =>
                     this.setState({ deliveryMethod: "Tự đến lấy" })
-                  }
-                >
+                  }>
                   📦 Tự đến lấy
                 </button>
               </div>
@@ -124,8 +119,9 @@ class Mycart extends Component {
                 className="checkout-note"
                 placeholder="Nhập ghi chú (VD: Giao giờ hành chính, gọi trước khi giao...)"
                 value={this.state.note}
-                onChange={(e) => this.setState({ note: e.target.value })}
-              ></textarea>
+                onChange={(e) =>
+                  this.setState({ note: e.target.value })
+                }></textarea>
             </div>
 
             <hr
@@ -152,8 +148,7 @@ class Mycart extends Component {
 
             <button
               className="btn-checkout"
-              onClick={() => this.lnkCheckoutClick()}
-            >
+              onClick={() => this.lnkCheckoutClick()}>
               ĐẶT HÀNG
             </button>
 
@@ -163,8 +158,7 @@ class Mycart extends Component {
                 color: "#888",
                 textAlign: "center",
                 marginTop: "15px",
-              }}
-            >
+              }}>
               Bằng việc bấm vào nút "Đặt hàng", bạn đồng ý với chính sách của
               chúng tôi.
             </p>

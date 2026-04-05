@@ -74,7 +74,8 @@ div.border-bottom {
 }
 
 .body-customer {
-  padding-top: 80px; /* avoid content hidden under fixed header */
+  padding-top: 80px;
+  /* avoid content hidden under fixed header */
 }
 
 .sticky-menu {
@@ -162,10 +163,12 @@ li.menu {
   border-radius: 4px;
   transition: background 0.3s ease;
 }
+
 .menu-label {
   align-items: center;
   gap: 8px;
 }
+
 .menu-toggle:hover {
   background: #e55a25;
 }
@@ -459,6 +462,7 @@ form.search {
   background-color: #dcfcfc;
   cursor: pointer;
 }
+
 /* Căn giữa toàn bộ khối chứa form */
 .align-center {
   display: flex;
@@ -483,7 +487,8 @@ table.align-center {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-collapse: separate;
-  border-spacing: 0 10px; /* Tạo khoảng cách giữa các hàng */
+  border-spacing: 0 10px;
+  /* Tạo khoảng cách giữa các hàng */
 }
 
 /* Style cho các cột (nhãn Username/Password) */
@@ -508,7 +513,8 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-  border-color: #e55a25; /* Đổi màu viền khi click vào ô nhập */
+  border-color: #e55a25;
+  /* Đổi màu viền khi click vào ô nhập */
 }
 
 /* Style cho nút Đăng nhập */
@@ -530,6 +536,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #e55a25;
 }
+
 /* Căn giữa toàn bộ khối chứa form */
 .align-center {
   display: flex;
@@ -554,7 +561,8 @@ table.align-center {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-collapse: separate;
-  border-spacing: 0 10px; /* Khoảng cách giữa các hàng */
+  border-spacing: 0 10px;
+  /* Khoảng cách giữa các hàng */
 }
 
 /* Style cho các cột nhãn (Username, Password, Name...) */
@@ -562,7 +570,8 @@ table td:first-child {
   font-weight: 600;
   color: #555;
   padding-right: 15px;
-  white-space: nowrap; /* Giữ chữ không bị rớt dòng */
+  white-space: nowrap;
+  /* Giữ chữ không bị rớt dòng */
 }
 
 /* BỔ SUNG: Style cho TẤT CẢ các ô nhập liệu (text, password, tel, email) */
@@ -585,13 +594,15 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="tel"]:focus,
 input[type="email"]:focus {
-  border-color: #e55a25; /* Đổi sang màu xanh lá cho form đăng ký thêm sinh động, bạn có thể đổi lại mã #007bff nếu thích màu xanh dương */
+  border-color: #e55a25;
+  /* Đổi sang màu xanh lá cho form đăng ký thêm sinh động, bạn có thể đổi lại mã #007bff nếu thích màu xanh dương */
 }
 
 /* Style cho nút Đăng ký */
 input[type="submit"] {
   width: 100%;
-  background-color: #e55a25; /* Nút màu xanh lá cho hành động Đăng ký mới */
+  background-color: #e55a25;
+  /* Nút màu xanh lá cho hành động Đăng ký mới */
   color: white;
   padding: 12px 20px;
   margin-top: 10px;
@@ -607,23 +618,29 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #000000;
 }
+
 .logo-img {
   width: 195.2px;
   height: 50px;
 }
+
 .logo-container-footer {
   width: 300px;
   height: 102.46px;
 }
+
 .inform-bar {
   display: flex;
-  width: 100vw; /* Lấy chiều rộng bằng đúng 100% màn hình thiết bị */
-  margin-left: calc(-50vw + 50%); /* Kéo nó tràn đều ra hai bên */
+  width: 100vw;
+  /* Lấy chiều rộng bằng đúng 100% màn hình thiết bị */
+  margin-left: calc(-50vw + 50%);
+  /* Kéo nó tràn đều ra hai bên */
   background: #000000;
   color: #333;
   box-sizing: border-box;
   padding: 10px 20px;
 }
+
 .inform-bar {
   display: flex;
   align-items: center;
@@ -639,19 +656,24 @@ input[type="submit"]:hover {
   padding: 10px 20px;
   border-bottom: 1px solid #444;
 }
+
 /* Trang trí ô nhập từ khóa trên nền đen */
 .inform-bar .search input[type="search"] {
   /* Tăng chiều dài từ 250px lên 450px (bạn có thể tự chỉnh số này to nhỏ tùy ý) */
-  height: 42px; /* Ép chiều cao cố định */
-  padding: 0 15px; /* Giữ khoảng cách chữ 2 bên, bỏ padding trên/dưới vì đã có height */
+  height: 42px;
+  /* Ép chiều cao cố định */
+  padding: 0 15px;
+  /* Giữ khoảng cách chữ 2 bên, bỏ padding trên/dưới vì đã có height */
   border: 1px solid #444;
-  border-right: none; /* Bỏ viền bên phải để liền mạch với nút SEARCH */
+  border-right: none;
+  /* Bỏ viền bên phải để liền mạch với nút SEARCH */
   border-radius: 4px 0 0 4px;
   outline: none;
   background-color: #222;
   color: #fff;
   font-size: 14px;
-  box-sizing: border-box; /* Giúp tính toán height chính xác, không bị độn thêm bởi border */
+  box-sizing: border-box;
+  /* Giúp tính toán height chính xác, không bị độn thêm bởi border */
 }
 
 /* Đổi màu viền sang cam khi click vào ô tìm kiếm */
@@ -661,9 +683,12 @@ input[type="submit"]:hover {
 
 /* Trang trí nút SEARCH */
 .inform-bar .search input[type="submit"] {
-  height: 42px; /* Cài đặt bằng y chang chiều cao của ô nhập liệu (42px) */
-  padding: 0 25px; /* Chiều ngang nút */
-  margin: 0; /* Xóa margin rác mặc định của trình duyệt */
+  height: 42px;
+  /* Cài đặt bằng y chang chiều cao của ô nhập liệu (42px) */
+  padding: 0 25px;
+  /* Chiều ngang nút */
+  margin: 0;
+  /* Xóa margin rác mặc định của trình duyệt */
   background-color: #e55a25;
   color: white;
   border: 1px solid #e55a25;
@@ -672,22 +697,29 @@ input[type="submit"]:hover {
   font-weight: bold;
   font-size: 14px;
   transition: background-color 0.3s;
-  box-sizing: border-box; /* Đảm bảo bằng nhau tuyệt đối với ô search */
+  box-sizing: border-box;
+  /* Đảm bảo bằng nhau tuyệt đối với ô search */
 }
 
 .inform-bar .search input[type="submit"]:hover {
   background-color: #ff6b35;
 }
+
 .keyword {
   width: 1110px;
 }
+
 /* Trang trí nút SEARCH */
 .inform-bar .search input[type="submit"] {
-  width: auto; /* Ép về kích thước tự nhiên chữ, gỡ bỏ width 100% bị dính từ form Login */
-  flex: 0 0 auto; /* Lệnh quan trọng: Cấm nút tự động co giãn (phình to) trong Flexbox */
+  width: auto;
+  /* Ép về kích thước tự nhiên chữ, gỡ bỏ width 100% bị dính từ form Login */
+  flex: 0 0 auto;
+  /* Lệnh quan trọng: Cấm nút tự động co giãn (phình to) trong Flexbox */
 
-  height: 42px; /* Vẫn giữ chiều cao 42px để bằng ô input */
-  padding: 0 25px; /* Độ rộng của nút sẽ phụ thuộc vào padding này */
+  height: 42px;
+  /* Vẫn giữ chiều cao 42px để bằng ô input */
+  padding: 0 25px;
+  /* Độ rộng của nút sẽ phụ thuộc vào padding này */
   margin: 0;
   background-color: #e55a25;
   color: white;
@@ -699,6 +731,7 @@ input[type="submit"]:hover {
   transition: background-color 0.3s;
   box-sizing: border-box;
 }
+
 .home-container {
   padding: 0;
   font-family: Arial, sans-serif;
@@ -728,7 +761,7 @@ input[type="submit"]:hover {
 }
 
 /* Content wrapper với padding */
-.hero-banner + section,
+.hero-banner+section,
 section {
   padding: 0 20px;
 }
@@ -769,8 +802,10 @@ section {
   width: 184px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid #eee; /* 👈 thêm dòng này */
-  border-radius: 10px; /* 👈 bo góc cho đẹp */
+  border: 1px solid #eee;
+  /* 👈 thêm dòng này */
+  border-radius: 10px;
+  /* 👈 bo góc cho đẹp */
   padding: 10px;
   background: #fff;
   display: flex;
@@ -865,17 +900,20 @@ section {
   background: #e55a25;
   transform: scale(1.05);
 }
+
 /* ==================================================
    CSS CHO TRANG LIÊN HỆ (CONTACT PAGE)
    ================================================== */
 
 .contact-wrapper {
-  max-width: 800px; /* Độ rộng của form */
+  max-width: 800px;
+  /* Độ rộng của form */
   margin: 0 auto;
   background: #ffffff;
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ cho nổi bật */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  /* Đổ bóng nhẹ cho nổi bật */
   border: 1px solid #eaeaea;
 }
 
@@ -897,7 +935,8 @@ section {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  flex: 1; /* Để dùng cho chia cột */
+  flex: 1;
+  /* Để dùng cho chia cột */
 }
 
 .form-group label {
@@ -939,7 +978,8 @@ section {
 
 /* Nút Submit */
 .btn-contact-submit {
-  background-color: #e55a25; /* Màu cam chủ đạo */
+  background-color: #e55a25;
+  /* Màu cam chủ đạo */
   color: #fff;
   border: none;
   padding: 15px;
@@ -967,13 +1007,15 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 2px solid #f0f0f0; /* Đường gạch chân nhẹ ở tiêu đề */
+  border-bottom: 2px solid #f0f0f0;
+  /* Đường gạch chân nhẹ ở tiêu đề */
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
 .view-all-link {
-  color: #1877f2; /* Màu xanh giống ảnh */
+  color: #1877f2;
+  /* Màu xanh giống ảnh */
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -987,7 +1029,8 @@ section {
 
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Ép hiển thị đúng 4 cột */
+  grid-template-columns: repeat(4, 1fr);
+  /* Ép hiển thị đúng 4 cột */
   gap: 20px;
 }
 
@@ -996,12 +1039,14 @@ section {
 }
 
 .news-card:hover {
-  transform: translateY(-5px); /* Hiệu ứng nhấc lên nhẹ khi hover */
+  transform: translateY(-5px);
+  /* Hiệu ứng nhấc lên nhẹ khi hover */
 }
 
 .news-img-wrapper {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Cực kỳ quan trọng: Ép ảnh thành khung chữ nhật nằm ngang giống Youtube */
+  aspect-ratio: 16 / 9;
+  /* Cực kỳ quan trọng: Ép ảnh thành khung chữ nhật nằm ngang giống Youtube */
   overflow: hidden;
   border-radius: 4px;
 }
@@ -1009,12 +1054,14 @@ section {
 .news-img-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Giúp ảnh không bị méo */
+  object-fit: cover;
+  /* Giúp ảnh không bị méo */
   transition: transform 0.3s ease;
 }
 
 .news-card:hover .news-img-wrapper img {
-  transform: scale(1.05); /* Zoom nhẹ ảnh khi di chuột */
+  transform: scale(1.05);
+  /* Zoom nhẹ ảnh khi di chuột */
 }
 
 .news-title {
@@ -1032,7 +1079,8 @@ section {
 }
 
 .news-card:hover .news-title {
-  color: #e55a25; /* Đổi sang màu cam chủ đạo khi hover chữ */
+  color: #e55a25;
+  /* Đổi sang màu cam chủ đạo khi hover chữ */
 }
 
 /* Responsive cho điện thoại (Biến 4 cột thành 2 cột hoặc 1 cột) */
@@ -1047,6 +1095,7 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
 /* =========================================
    CHI TIẾT TIN TỨC (NEWS DETAIL PAGE)
    ========================================= */
@@ -1054,31 +1103,39 @@ section {
 /* Khung chứa bài viết (Centered, max-width giống ảnh) */
 .news-detail-article-box {
   padding: 40px 20px;
-  max-width: 1000px; /* Tăng nhẹ chiều rộng tối đa so với code cũ */
+  max-width: 1000px;
+  /* Tăng nhẹ chiều rộng tối đa so với code cũ */
   margin: 0 auto;
-  background: #fff; /* Nền trắng bọc lấy bài viết cho nổi bật */
+  background: #fff;
+  /* Nền trắng bọc lấy bài viết cho nổi bật */
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ cho chuyên nghiệp */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  /* Đổ bóng nhẹ cho chuyên nghiệp */
 }
 
 /* Thẻ bọc hình ảnh đại diện lớn */
 .news-detail-feature-image-wrapper {
   text-align: center;
   margin-bottom: 30px;
-  border-radius: 8px; /* Bo nhẹ viền ảnh */
+  border-radius: 8px;
+  /* Bo nhẹ viền ảnh */
   overflow: hidden;
 }
 
 .news-detail-feature-image-wrapper img {
-  max-width: 100%; /* Đảm bảo ảnh không phình to hơn khung */
+  max-width: 100%;
+  /* Đảm bảo ảnh không phình to hơn khung */
   height: auto;
-  object-fit: cover; /* Giúp ảnh không bị méo */
+  object-fit: cover;
+  /* Giúp ảnh không bị méo */
 }
 
 /* Tiêu đề bài viết */
 .news-detail-title {
-  font-family: "Montserrat", sans-serif; /* Sử dụng font Montserrat đậm */
-  font-size: 32px; /* Tăng kích thước tiêu đề */
+  font-family: "Montserrat", sans-serif;
+  /* Sử dụng font Montserrat đậm */
+  font-size: 32px;
+  /* Tăng kích thước tiêu đề */
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 15px;
@@ -1090,17 +1147,22 @@ section {
   color: #888;
   font-size: 14px;
   margin-bottom: 30px;
-  border-bottom: 2px solid #f0f0f0; /* Đường gạch chân nhẹ thay vì cam */
+  border-bottom: 2px solid #f0f0f0;
+  /* Đường gạch chân nhẹ thay vì cam */
   padding-bottom: 15px;
-  font-style: italic; /* In nghiêng ngày tháng */
+  font-style: italic;
+  /* In nghiêng ngày tháng */
 }
 
 /* Định dạng nội dung bài viết render từ HTML */
 .news-detail-content-body {
-  font-family: "Open Sans", sans-serif; /* Font sans-serif dễ đọc */
+  font-family: "Open Sans", sans-serif;
+  /* Font sans-serif dễ đọc */
   font-size: 16px;
-  line-height: 1.8; /* Chiều cao dòng rộng để dễ đọc */
-  color: #333; /* Màu xám đậm thay vì đen */
+  line-height: 1.8;
+  /* Chiều cao dòng rộng để dễ đọc */
+  color: #333;
+  /* Màu xám đậm thay vì đen */
 }
 
 .news-detail-content-body p {
@@ -1119,10 +1181,12 @@ section {
 /* Style cho các tiêu đề phụ h2, h3 trong bài viết bằng màu cam */
 .news-detail-content-body h2,
 .news-detail-content-body h3 {
-  color: #e55a25; /* Màu cam chủ đạo */
+  color: #e55a25;
+  /* Màu cam chủ đạo */
   margin-top: 30px;
   margin-bottom: 15px;
 }
+
 /* ========================================================
    ĐỊNH DẠNG NỘI DUNG BÀI VIẾT TỪ TRÌNH SOẠN THẢO (QUILL)
    ======================================================== */
@@ -1132,7 +1196,8 @@ section {
   font-size: 16px;
   line-height: 1.8;
   color: #333;
-  text-align: justify; /* CỰC KỲ QUAN TRỌNG: Căn chữ đều tắp 2 bên lề giống như đọc báo */
+  text-align: justify;
+  /* CỰC KỲ QUAN TRỌNG: Căn chữ đều tắp 2 bên lề giống như đọc báo */
 }
 
 /* Khoảng cách giữa các đoạn văn */
@@ -1145,7 +1210,8 @@ section {
 .news-detail-content-body h2,
 .news-detail-content-body h3,
 .news-detail-content-body h4 {
-  color: #e55a25; /* Cho các tiêu đề phụ màu cam cho nổi bật */
+  color: #e55a25;
+  /* Cho các tiêu đề phụ màu cam cho nổi bật */
   margin-top: 35px;
   margin-bottom: 15px;
   font-weight: bold;
@@ -1157,16 +1223,20 @@ section {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 30px auto; /* Luôn ép ảnh nằm chính giữa bài viết */
-  border-radius: 8px; /* Bo góc ảnh nhẹ */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ làm nổi ảnh lên */
+  margin: 30px auto;
+  /* Luôn ép ảnh nằm chính giữa bài viết */
+  border-radius: 8px;
+  /* Bo góc ảnh nhẹ */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Đổ bóng nhẹ làm nổi ảnh lên */
 }
 
 /* Định dạng danh sách (dấu chấm tròn hoặc số thứ tự) */
 .news-detail-content-body ul,
 .news-detail-content-body ol {
   margin-bottom: 20px;
-  padding-left: 40px; /* Thụt lề vào trong để không bị sát lề */
+  padding-left: 40px;
+  /* Thụt lề vào trong để không bị sát lề */
 }
 
 .news-detail-content-body li {
@@ -1183,19 +1253,24 @@ section {
 
 .news-detail-content-body a:hover {
   text-decoration: underline;
-  color: #000; /* Đổi màu khi di chuột vào link */
+  color: #000;
+  /* Đổi màu khi di chuột vào link */
 }
 
 /* Định dạng các đoạn trích dẫn (Blockquote - Dấu ngoặc kép trên thanh công cụ) */
 .news-detail-content-body blockquote {
-  border-left: 5px solid #e55a25; /* Thanh dọc màu cam bên trái */
-  background-color: #f9f9f9; /* Nền xám nhạt */
+  border-left: 5px solid #e55a25;
+  /* Thanh dọc màu cam bên trái */
+  background-color: #f9f9f9;
+  /* Nền xám nhạt */
   margin: 30px 0;
   padding: 15px 25px;
-  font-style: italic; /* Chữ in nghiêng */
+  font-style: italic;
+  /* Chữ in nghiêng */
   color: #555;
   border-radius: 0 8px 8px 0;
 }
+
 .news-detail-content-body {
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 16px;
@@ -1204,19 +1279,24 @@ section {
   text-align: justify;
 
   /* BỔ SUNG 4 DÒNG NÀY VÀO ĐỂ TRỊ LỖI TRÀN CHỮ */
-  overflow-wrap: break-word; /* Gặp mép khung là bắt buộc xuống dòng */
+  overflow-wrap: break-word;
+  /* Gặp mép khung là bắt buộc xuống dòng */
   word-wrap: break-word;
-  word-break: break-word; /* Nếu có 1 từ quá dài (như đường link) thì bẻ gãy từ đó luôn */
-  max-width: 100%; /* Cấm toàn bộ nội dung không được phình to hơn khung trắng */
+  word-break: break-word;
+  /* Nếu có 1 từ quá dài (như đường link) thì bẻ gãy từ đó luôn */
+  max-width: 100%;
+  /* Cấm toàn bộ nội dung không được phình to hơn khung trắng */
 }
 
 /* THÊM KHỐI NÀY ĐỂ TRỊ CÁC ĐOẠN TEXT BỊ COPY/PASTE LỖI TỪ NƠI KHÁC */
 .news-detail-content-body p,
 .news-detail-content-body span,
 .news-detail-content-body div {
-  white-space: normal !important; /* Xóa bỏ mọi lệnh "cấm xuống dòng" bị dính từ nơi khác */
+  white-space: normal !important;
+  /* Xóa bỏ mọi lệnh "cấm xuống dòng" bị dính từ nơi khác */
   max-width: 100%;
 }
+
 /* =========================================
    GIỎ HÀNG & THANH TOÁN (CART PAGE)
    ========================================= */
@@ -1296,7 +1376,8 @@ section {
   flex: 1;
   text-align: right;
   font-weight: bold;
-  color: #be1128; /* Màu đỏ đậm giống nút đặt hàng trong ảnh */
+  color: #be1128;
+  /* Màu đỏ đậm giống nút đặt hàng trong ảnh */
   font-size: 16px;
 }
 
@@ -1305,14 +1386,43 @@ section {
   cursor: pointer;
   font-size: 13px;
   transition: all 0.2s;
-  text-decoration: none; /* Bỏ gạch chân mặc định gây lỗi */
+  text-decoration: none;
+  /* Bỏ gạch chân mặc định gây lỗi */
   display: inline-block;
-  margin-top: 10px; /* Đẩy lùi xuống một chút cho thoáng */
+  margin-top: 10px;
+  /* Đẩy lùi xuống một chút cho thoáng */
 }
 
 .cart-item-remove:hover {
   color: #be1128;
-  text-decoration: underline; /* Chỉ hiện gạch chân khi di chuột vào */
+  text-decoration: underline;
+  /* Chỉ hiện gạch chân khi di chuột vào */
+}
+
+.cart-item-remove-btn {
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.cart-item-remove-btn:hover {
+  background: #e55a25;
+  transform: translateY(-1px);
+}
+
+.cart-item-remove-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.25);
 }
 
 /* ================= BÊN PHẢI: FORM THANH TOÁN ================= */
@@ -1323,7 +1433,8 @@ section {
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   position: sticky;
-  top: 90px; /* Cố định cột bên phải khi cuộn trang */
+  top: 90px;
+  /* Cố định cột bên phải khi cuộn trang */
 }
 
 .cart-right-section h2 {
@@ -1369,7 +1480,8 @@ section {
 .delivery-btn.active {
   border-color: #be1128;
   color: #be1128;
-  background-color: #fcf0f2; /* Nền đỏ nhạt */
+  background-color: #fcf0f2;
+  /* Nền đỏ nhạt */
 }
 
 /* Ghi chú */
@@ -1381,7 +1493,8 @@ section {
   resize: vertical;
   min-height: 80px;
   font-family: inherit;
-  background-color: #fdfaf5; /* Nền vàng nhạt giống ảnh */
+  background-color: #fdfaf5;
+  /* Nền vàng nhạt giống ảnh */
   box-sizing: border-box;
 }
 
@@ -1414,7 +1527,8 @@ section {
 .btn-checkout {
   width: 100%;
   padding: 15px;
-  background-color: #be1128; /* Màu đỏ đậm */
+  background-color: #be1128;
+  /* Màu đỏ đậm */
   color: white;
   border: none;
   border-radius: 6px;
@@ -1434,12 +1548,14 @@ section {
   .cart-page-container {
     flex-direction: column;
   }
+
   .cart-left-section,
   .cart-right-section {
     width: 100%;
     box-sizing: border-box;
   }
 }
+
 /* Định dạng cho Giá */
 .cart-item-price {
   flex: 1;
@@ -1456,7 +1572,8 @@ section {
   border-radius: 4px;
   overflow: hidden;
   width: fit-content;
-  margin: 0 auto; /* Căn giữa */
+  margin: 0 auto;
+  /* Căn giữa */
 }
 
 .qty-btn {
@@ -1486,8 +1603,10 @@ section {
   font-size: 14px;
   outline: none;
   background: #fff;
-  pointer-events: none; /* Khóa không cho gõ phím trực tiếp, chỉ bấm nút */
+  pointer-events: none;
+  /* Khóa không cho gõ phím trực tiếp, chỉ bấm nút */
 }
+
 /* =========================================
    QUẢN LÝ ĐƠN HÀNG (MY ORDERS PAGE)
    ========================================= */
@@ -1547,7 +1666,8 @@ section {
 }
 
 .table-hover tbody tr:hover {
-  background-color: #fcf0f2; /* Nền đỏ nhạt báo hiệu có thể click */
+  background-color: #fcf0f2;
+  /* Nền đỏ nhạt báo hiệu có thể click */
 }
 
 /* Cột hình ảnh trong chi tiết đơn hàng */
@@ -1589,16 +1709,19 @@ section {
   background-color: #f8d7da;
   color: #721c24;
 }
+
 /* Cho phép toàn bộ form Search tự động co giãn lấp đầy khoảng trống ở giữa */
 .inform-bar .search {
   flex: 1;
-  margin: 0 20px; /* Cách nút Danh mục và Giỏ hàng ra 20px cho thoáng */
+  margin: 0 20px;
+  /* Cách nút Danh mục và Giỏ hàng ra 20px cho thoáng */
 }
 
 /* Ép ô nhập từ khóa (keyword) dài bằng 100% form, xóa bỏ cái width cứng 1110px cũ */
 .keyword {
   width: 100% !important;
 }
+
 /* 1. Ngăn không cho chữ rớt xuống dòng thứ 2 dù màn hình bị ép */
 .menu-toggle {
   white-space: nowrap !important;
@@ -1607,10 +1730,12 @@ section {
 /* 2. Khi màn hình nhỏ hơn 1050px (bắt đầu bị chật) -> Tự động ẨN CHỮ */
 @media (max-width: 1050px) {
   .menu-label {
-    display: none !important; /* Lệnh "tàng hình" chữ */
+    display: none !important;
+    /* Lệnh "tàng hình" chữ */
   }
 
   .menu-toggle {
-    padding: 8px 15px !important; /* Căn chỉnh lại khung cho icon ☰ vuông vắn */
+    padding: 8px 15px !important;
+    /* Căn chỉnh lại khung cho icon ☰ vuông vắn */
   }
 }
