@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import withRouter from "../utils/withRouter";
 
 class Signup extends Component {
   constructor(props) {
@@ -127,8 +128,11 @@ class Signup extends Component {
     axios.post("/api/customer/signup", account).then((res) => {
       const result = res.data;
       alert(result.message);
+      if (result.success === true) {
+        this.props.navigate("/active");
+      }
     });
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

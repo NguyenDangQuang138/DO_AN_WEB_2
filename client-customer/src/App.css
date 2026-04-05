@@ -1787,3 +1787,7 @@ section {
   max-width: 100%;
   overflow-x: hidden;
 }
+.nav-links {
+  display: flex;
+  gap: 5rem;
+}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import withRouter from "../utils/withRouter";
 
 class Active extends Component {
   constructor(props) {
@@ -83,6 +84,7 @@ class Active extends Component {
 
       if (result.success) {
         alert("Account activated successfully!");
+        this.props.navigate("/login");
       } else {
         alert("Activation failed: " + result.message);
       }
@@ -90,4 +92,4 @@ class Active extends Component {
   }
 }
 
-export default Active;
+export default withRouter(Active);

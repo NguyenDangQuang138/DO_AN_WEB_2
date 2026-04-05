@@ -18,22 +18,21 @@ class Menu extends Component {
               className="logo-img"
             />
           </Link>
-
           {/* Các link điều hướng */}
-          <Link className="category-link home-link" to="/">
-            Trang chủ
-          </Link>
-          <Link className="category-link home-link" to="/shop">
-            Sản phẩm
-          </Link>
-          <Link className="category-link home-link" to="/news">
-            Tin tức
-          </Link>
-          <Link className="category-link home-link" to="/contact">
-            Liên hệ
-          </Link>
-
-          {/* Khối Auth (Login/Signup/Active) */}
+          <div className="nav-links">
+            <Link className="category-link home-link" to="/">
+              Trang chủ
+            </Link>
+            <Link className="category-link home-link" to="/shop">
+              Sản phẩm
+            </Link>
+            <Link className="category-link home-link" to="/news">
+              Tin tức
+            </Link>
+            <Link className="category-link home-link" to="/contact">
+              Liên hệ
+            </Link>
+          </div>
           <div className="user-auth-section">
             {this.context.token === "" ? (
               <div>
@@ -44,10 +43,6 @@ class Menu extends Component {
                 <Link to="/signup" className="category-link home-link">
                   Sign-up
                 </Link>{" "}
-                |{" "}
-                <Link to="/active" className="category-link home-link">
-                  Active
-                </Link>
               </div>
             ) : (
               <div>
