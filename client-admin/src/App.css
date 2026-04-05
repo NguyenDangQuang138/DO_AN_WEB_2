@@ -341,3 +341,173 @@ input.keyword {
   border-radius: 3px;
   cursor: pointer;
 }
+/* Container tổng chia 2 cột bằng Flexbox */
+.admin-contact-main-container {
+  display: flex;
+  gap: 25px;
+  padding: 20px;
+  background-color: #f8f9fa; /* Màu nền xám nhạt */
+  min-height: 85vh;
+  align-items: flex-start; /* Không kéo dài các box theo chiều cao */
+}
+
+/* Kiểu dáng chung cho các hộp bọc */
+.admin-contact-list-box,
+.admin-contact-detail-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07); /* Đổ bóng nhẹ y hệt mẫu */
+  border: 1px solid #eaeaea;
+}
+
+/* Tỷ lệ chia cột: Trái 40% - Phải 60% */
+.admin-contact-list-box {
+  flex: 1;
+  max-height: 80vh; /* Giới hạn chiều cao danh sách */
+}
+
+.admin-contact-detail-box {
+  flex: 1.5;
+  min-height: 400px;
+  position: sticky; /* Form đứng yên khi cuộn trang */
+  top: 20px;
+}
+
+.admin-section-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 22px;
+  color: #333;
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* =======================================================
+   CSS CHO BẢNG DANH SÁCH (BÊN TRÁI)
+   ======================================================= */
+.table-scroll-wrapper {
+  max-height: 65vh;
+  overflow-y: auto; /* Cho phép cuộn dọc danh sách tin nhắn */
+}
+
+.admin-datatable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-datatable th {
+  background-color: #f1f3f5;
+  color: #555;
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.datatable-row {
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.datatable-row:hover {
+  background-color: #f8f9fa;
+}
+
+/* Style cho dòng đang được chọn */
+.datatable-row.selected {
+  background-color: #e8f0fe;
+  font-weight: 500;
+}
+
+.datatable-row td {
+  padding: 12px 10px;
+  color: #444;
+}
+
+.btn-action {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.btn-delete-small {
+  background-color: #ff4d4f;
+  color: white;
+}
+.btn-delete-small:hover {
+  background-color: #ff7875;
+}
+
+/* =======================================================
+   CSS CHO PHẦN CHI TIẾT (BÊN PHẢI)
+   ======================================================= */
+
+/* 1. Trạng thái TRỐNG (Chưa chọn tin nhắn) */
+.contact-detail-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Chiều cao tối thiểu của khung trống */
+}
+
+.empty-placeholder {
+  color: #888;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  padding: 20px 40px;
+  border-radius: 8px;
+  border: 1px dashed #ccc; /* Viền đứt nét y hệt ảnh 4 */
+}
+
+/* 2. Trạng thái HOẠT ĐỘNG (Đang xem tin nhắn) */
+.contact-detail-active p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #333;
+}
+
+.contact-detail-active strong {
+  color: #555;
+  margin-right: 5px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.highlight-text {
+  background-color: #fff3cd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #856404;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+/* Khung bọc nội dung tin nhắn */
+.message-content-area {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-top: 10px;
+  line-height: 1.7;
+  color: #444;
+  white-space: pre-line; /* Giữ nguyên dấu xuống dòng khách gõ */
+}
