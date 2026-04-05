@@ -41,6 +41,7 @@ const ProductSchema = new mongoose.Schema(
     name: String,
     price: Number,
     image: String,
+    details: String,
     cdate: Number,
     category: CategorySchema,
   },

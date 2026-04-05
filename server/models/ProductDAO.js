@@ -61,7 +61,7 @@ const ProductDAO = {
       price: product.price,
       image: product.image,
       category: product.category,
-      details: product.details, // BỔ SUNG DÒNG NÀY ĐỂ MONGODB CHỊU LƯU MÔ TẢ
+      details: product.details,
     };
 
     const result = await Models.Product.findByIdAndUpdate(

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "../utils/withRouter";
 import MyContext from "../contexts/MyContext";
-import "./styles/home.css"; // Tái sử dụng CSS lưới sản phẩm cho phần gợi ý
+import "./styles/home.css";
 
 class ProductDetail extends Component {
   static contextType = MyContext;
@@ -13,14 +13,13 @@ class ProductDetail extends Component {
     this.state = {
       product: null,
       txtQuantity: 1,
-      similarProducts: [], // Mảng chứa các sản phẩm gợi ý
+      similarProducts: [],
     };
   }
 
   render() {
     const prod = this.state.product;
 
-    // Tạo lưới sản phẩm gợi ý
     const similarProds = this.state.similarProducts.map((item) => {
       return (
         <div key={item._id} className="product-card">
@@ -53,7 +52,7 @@ class ProductDetail extends Component {
     if (prod != null) {
       return (
         <div className="home-container">
-          {/* PHẦN 1: CHI TIẾT SẢN PHẨM */}
+          {/* PHẦN 1: THÔNG TIN CƠ BẢN (ẢNH, GIÁ, NÚT MUA) */}
           <div className="align-center" style={{ marginBottom: "50px" }}>
             <h2 className="section-title">PRODUCT DETAILS</h2>
             <figure
@@ -72,7 +71,6 @@ class ProductDetail extends Component {
                   padding: "10px",
                 }}
               />
-
               <figcaption>
                 <form>
                   <table style={{ fontSize: "16px", lineHeight: "2" }}>
@@ -119,9 +117,9 @@ class ProductDetail extends Component {
                             min="1"
                             max="99"
                             value={this.state.txtQuantity}
-                            onChange={(e) => {
-                              this.setState({ txtQuantity: e.target.value });
-                            }}
+                            onChange={(e) =>
+                              this.setState({ txtQuantity: e.target.value })
+                            }
                             style={{
                               padding: "5px",
                               width: "60px",
@@ -149,6 +147,43 @@ class ProductDetail extends Component {
             </figure>
           </div>
 
+          {/* ========================================================
+              PHẦN 1.2: MÔ TẢ CHI TIẾT SẢN PHẨM (MỚI THÊM)
+              ======================================================== */}
+          <div
+            className="product-content-wrapper"
+            style={{
+              maxWidth: "1150px",
+              margin: "0 auto 50px auto",
+              padding: "20px",
+              background: "#fff",
+              borderRadius: "8px",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
+            }}
+          >
+            <h3
+              style={{
+                borderBottom: "2px solid #e55a25",
+                paddingBottom: "10px",
+                color: "#333",
+                textTransform: "uppercase",
+                fontSize: "18px",
+                marginBottom: "20px",
+              }}
+            >
+              Thông tin chi tiết sản phẩm
+            </h3>
+            <div
+              className="product-content-body"
+              style={{ lineHeight: "1.8", fontSize: "16px", color: "#444" }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  prod.details ||
+                  "<p style='color:#888; text-align:center;'>Sản phẩm này hiện chưa có mô tả chi tiết từ quản trị viên.</p>",
+              }}
+            />
+          </div>
+
           {/* PHẦN 2: SẢN PHẨM TƯƠNG TỰ */}
           {this.state.similarProducts.length > 0 && (
             <section
@@ -172,25 +207,21 @@ class ProductDetail extends Component {
     );
   }
 
-  // --- LIFECYCLE ---
+  // --- LOGIC HÀM (GIỮ NGUYÊN NHƯ CŨ) ---
   componentDidMount() {
     const params = this.props.params;
     this.apiGetProduct(params.id);
   }
 
-  // Chạy khi người dùng bấm vào một sản phẩm gợi ý bên dưới
   componentDidUpdate(prevProps) {
     const params = this.props.params;
     if (params.id !== prevProps.params.id) {
-      this.apiGetProduct(params.id); // Gọi lại API cho sản phẩm mới
-      this.setState({ txtQuantity: 1 }); // Reset lại số lượng về 1
-      window.scrollTo(0, 0); // Cuộn lên đầu trang
+      this.apiGetProduct(params.id);
+      this.setState({ txtQuantity: 1 });
+      window.scrollTo(0, 0);
     }
   }
 
-  // --- EVENT HANDLERS ---
-
-  // Hàm thêm giỏ hàng cho sản phẩm chính đang xem
   btnAdd2CartClick(e) {
     e.preventDefault();
     if (!this.context.token) {
@@ -198,10 +229,8 @@ class ProductDetail extends Component {
       this.props.navigate("/login");
       return;
     }
-
     const product = this.state.product;
     const quantity = parseInt(this.state.txtQuantity);
-
     if (quantity) {
       const mycart = this.context.mycart;
       const index = mycart.findIndex((x) => x.product._id === product._id);
@@ -212,17 +241,11 @@ class ProductDetail extends Component {
       }
       this.context.setMycart(mycart);
       localStorage.setItem("mycart", JSON.stringify(mycart));
-
-      // BỔ SUNG: Gọi API cập nhật Database
       this.apiUpdateCart(mycart);
-
       alert(`Đã thêm ${quantity} x "${product.name}" vào giỏ hàng!`);
-    } else {
-      alert("Please input quantity");
     }
   }
 
-  // Hàm thêm giỏ hàng nhanh cho các sản phẩm gợi ý
   addSimilarToCart(product) {
     if (!this.context.token) {
       alert("Vui lòng đăng nhập để thêm vào giỏ hàng!");
@@ -238,40 +261,23 @@ class ProductDetail extends Component {
     }
     this.context.setMycart(mycart);
     localStorage.setItem("mycart", JSON.stringify(mycart));
-
-    // BỔ SUNG: Gọi API cập nhật Database
     this.apiUpdateCart(mycart);
-
     alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
   }
 
-  // ==========================================
-  // HÀM GỬI LÊN DATABASE
-  // ==========================================
   apiUpdateCart(mycart) {
     if (this.context.customer) {
-      const body = {
-        customerId: this.context.customer._id,
-        cart: mycart,
-      };
-      axios
-        .put("/api/customer/cart", body)
-        .then((res) => {
-          console.log("Cập nhật DB thành công!");
-        })
-        .catch((err) => {
-          console.error("Lỗi khi lưu giỏ hàng: ", err);
-        });
+      const body = { customerId: this.context.customer._id, cart: mycart };
+      axios.put("/api/customer/cart", body).then((res) => {
+        console.log("Cập nhật DB thành công!");
+      });
     }
   }
 
-  // --- APIS ---
   apiGetProduct(id) {
     axios.get("/api/customer/products/" + id).then((res) => {
       const result = res.data;
       this.setState({ product: result });
-
-      // Gọi tiếp API lấy sản phẩm cùng danh mục
       if (result && result.category) {
         this.apiGetSimilarProducts(result.category._id, result._id);
       }
@@ -281,7 +287,6 @@ class ProductDetail extends Component {
   apiGetSimilarProducts(cid, currentProductId) {
     axios.get("/api/customer/products/category/" + cid).then((res) => {
       const result = res.data;
-      // Lọc bỏ cái sản phẩm hiện tại đang xem ra (để không tự gợi ý chính nó)
       const similar = result.filter((item) => item._id !== currentProductId);
       this.setState({ similarProducts: similar });
     });

@@ -107,3 +107,215 @@ input.keyword {
   background-color: #dcfcfc;
   cursor: pointer;
 }
+/* Container tổng chia 2 cột */
+.admin-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f7f6;
+  min-height: 90vh;
+  align-items: flex-start;
+}
+
+/* CỘT TRÁI: DANH SÁCH (NEWS LIST / PRODUCT LIST) */
+.admin-list-box {
+  flex: 1; /* Chiếm khoảng 40% màn hình */
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* CỘT PHẢI: CHI TIẾT (DETAILS) */
+.admin-detail-box {
+  flex: 1.2; /* Chiếm khoảng 60% màn hình */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Định dạng bảng bên trái */
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.datatable th {
+  background-color: #ffcc00;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.datatable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Định dạng Form bên phải */
+.admin-form-table {
+  width: 100%;
+}
+.admin-form-table td {
+  padding: 10px 5px;
+  vertical-align: top;
+}
+.admin-form-table td:first-child {
+  font-weight: bold;
+  width: 100px;
+}
+
+.admin-form-table input[type="text"],
+.admin-form-table input[type="number"],
+.admin-form-table select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Trình soạn thảo Quill */
+.quill-editor {
+  height: 300px;
+  margin-bottom: 50px; /* Khoảng cách để không đè lên nút bấm */
+}
+
+/* Cụm nút bấm cuối form */
+.admin-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-admin {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-add {
+  background-color: #e67e22;
+}
+.btn-update {
+  background-color: #34495e;
+}
+.btn-delete {
+  background-color: #ff0000;
+}
+/* Container tổng chia 2 cột */
+.admin-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f7f6;
+  min-height: 90vh;
+  align-items: flex-start;
+}
+
+/* CỘT TRÁI: DANH SÁCH (NEWS LIST / PRODUCT LIST) */
+.admin-list-box {
+  flex: 1; /* Chiếm khoảng 40% màn hình */
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* CỘT PHẢI: CHI TIẾT (DETAILS) */
+.admin-detail-box {
+  flex: 1.2; /* Chiếm khoảng 60% màn hình */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Định dạng bảng bên trái */
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.datatable th {
+  background-color: #ffcc00;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.datatable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Định dạng Form bên phải */
+.admin-form-table {
+  width: 100%;
+}
+.admin-form-table td {
+  padding: 10px 5px;
+  vertical-align: top;
+}
+.admin-form-table td:first-child {
+  font-weight: bold;
+  width: 100px;
+}
+
+.admin-form-table input[type="text"],
+.admin-form-table input[type="number"],
+.admin-form-table select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Trình soạn thảo Quill */
+.quill-editor {
+  height: 300px;
+  margin-bottom: 50px; /* Khoảng cách để không đè lên nút bấm */
+}
+
+/* Cụm nút bấm cuối form */
+.admin-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-admin {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-add {
+  background-color: #e67e22;
+}
+.btn-update {
+  background-color: #34495e;
+}
+.btn-delete {
+  background-color: #ff0000;
+}

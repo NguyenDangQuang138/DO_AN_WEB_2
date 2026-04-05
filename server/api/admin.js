@@ -111,12 +111,14 @@ router.post("/products", JwtUtil.checkToken, async function (req, res) {
   const price = req.body.price;
   const cid = req.body.category;
   const image = req.body.image;
+  const details = req.body.details;
   const now = new Date().getTime(); // milliseconds
   const category = await CategoryDAO.selectByID(cid);
   const product = {
     name: name,
     price: price,
     image: image,
+    details: details,
     cdate: now,
     category: category,
   };
@@ -130,6 +132,7 @@ router.put("/products/:id", JwtUtil.checkToken, async function (req, res) {
   const price = req.body.price;
   const cid = req.body.category;
   const image = req.body.image;
+  const details = req.body.details;
   const now = new Date().getTime(); // milliseconds
 
   const category = await CategoryDAO.selectByID(cid);
@@ -138,6 +141,7 @@ router.put("/products/:id", JwtUtil.checkToken, async function (req, res) {
     name: name,
     price: price,
     image: image,
+    details: details,
     cdate: now,
     category: category,
   };
