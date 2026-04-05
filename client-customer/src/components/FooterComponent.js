@@ -24,10 +24,10 @@ class Footer extends Component {
                 <Link to="/">Trang chủ</Link>
               </li>
               <li>
-                <Link to="/product/search/new">Sản phẩm</Link>
+                <Link to="/shop">Sản phẩm</Link>
               </li>
               <li>
-                <Link to="/product/search/hot">Tin tức</Link>
+                <Link to="/news">Tin tức</Link>
               </li>
               <li>
                 <Link to="/contact">Liên hệ</Link>
