@@ -73,22 +73,57 @@ class Inform extends Component {
           />
         </form>
 
-        {/* 3. Giỏ hàng (Nằm bên phải) */}
-        <div className="inform-cart-section">
-          {/* Đã thay đổi thẻ Link thành thẻ span có sự kiện onClick */}
-          <span
+        {/* 3. Giỏ hàng (Nằm bên phải - ĐÃ THAY BẰNG ICON) */}
+        <div
+          className="inform-cart-section"
+          style={{ display: "flex", alignItems: "center", marginRight: "20px" }}
+        >
+          <div
             onClick={() => this.lnkMyCartClick()}
             style={{
-              color: "#e55a25",
-              textDecoration: "none",
-              marginRight: "4px",
               cursor: "pointer",
-              fontWeight: "bold",
+              position:
+                "relative" /* Cực kỳ quan trọng để định vị cái bong bóng số lượng */,
+              display: "inline-block",
+              color: "#e55a25" /* Màu cam chủ đạo */,
+              transition: "transform 0.2s",
             }}
+            title="Xem giỏ hàng của bạn"
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
-            My cart
-          </span>
-          have <b>{this.context.mycart.length}</b> items
+            {/* Mã SVG vẽ ra chiếc xe đẩy siêu thị */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+
+            {/* Bong bóng (Badge) báo số lượng nằm góc trên bên phải icon */}
+            <span
+              style={{
+                position: "absolute",
+                top: "-8px",
+                right: "-12px",
+                background: "#ff6b35",
+                color: "white",
+                borderRadius: "20px",
+                padding: "2px 6px",
+                fontSize: "12px",
+                fontWeight: "bold",
+                border:
+                  "2px solid #000" /* Khung viền đen tiệp với màu nền để nổi bật badge */,
+              }}
+            >
+              {this.context.mycart.length}
+            </span>
+          </div>
         </div>
       </div>
     );
@@ -103,7 +138,6 @@ class Inform extends Component {
     }
   }
 
-  // Thêm hàm xử lý kiểm tra đăng nhập khi click vào giỏ hàng
   lnkMyCartClick() {
     if (!this.context.token) {
       alert("Vui lòng đăng nhập để xem giỏ hàng!");
