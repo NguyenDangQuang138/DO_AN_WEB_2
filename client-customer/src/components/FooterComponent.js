@@ -21,16 +21,16 @@ class Footer extends Component {
             <h4>Quick Links</h4>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Trang chủ</Link>
               </li>
               <li>
-                <Link to="/product/search/new">New Products</Link>
+                <Link to="/product/search/new">Sản phẩm</Link>
               </li>
               <li>
-                <Link to="/product/search/hot">Hot Deals</Link>
+                <Link to="/product/search/hot">Tin tức</Link>
               </li>
               <li>
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/contact">Liên hệ</Link>
               </li>
             </ul>
           </div>
