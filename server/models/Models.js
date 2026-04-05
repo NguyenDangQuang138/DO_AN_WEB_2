@@ -28,6 +28,8 @@ const CustomerSchema = new mongoose.Schema(
     email: String,
     active: Number,
     token: String,
+    activeOTP: String,
+    otpCreatedAt: Date,
   },
   { versionKey: false },
 );
