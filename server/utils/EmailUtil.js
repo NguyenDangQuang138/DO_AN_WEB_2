@@ -10,20 +10,20 @@ const transporter = nodemailer.createTransport({
 });
 
 const EmailUtil = {
-  send(email, id, token) {
+  send(email, otp) {
     const text =
-      "Thanks for signing up, please input these informations to activate your account:\n" +
-      "\t- id: " +
-      id +
-      "\n" +
-      "\t- token: " +
-      token;
+      "Thank you for signing up! Please use this OTP code to activate your account:\n\n" +
+      "\t- OTP Code: " +
+      otp +
+      "\n\n" +
+      "This code will expire in 5 minutes.\n" +
+      "If you did not sign up, please ignore this email.";
 
     return new Promise((resolve, reject) => {
       const mailOptions = {
         from: MyConstants.EMAIL_USER,
         to: email,
-        subject: "Signup | Verification",
+        subject: "Signup | Verification OTP",
         text: text,
       };
 

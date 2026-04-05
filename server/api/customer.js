@@ -112,9 +112,15 @@ router.put("/customers/:id", JwtUtil.checkToken, async function (req, res) {
 // customer
 
 router.post("/active", async function (req, res) {
-  const _id = req.body.id;
-  const token = req.body.token;
-  const result = await CustomerDAO.active(_id, token, 1);
+  const email = req.body.email;
+  const otp = req.body.otp;
+
+  if (!email || !otp) {
+    res.json({ success: false, message: "Please provide email and OTP" });
+    return;
+  }
+
+  const result = await CustomerDAO.activeByOTP(email, otp);
   res.json(result);
 });
 router.post("/signup", async function (req, res) {
@@ -129,8 +135,9 @@ router.post("/signup", async function (req, res) {
   if (dbCust) {
     res.json({ success: false, message: "Exists username or email" });
   } else {
-    const now = new Date().getTime(); // milliseconds
-    const token = CryptoUtil.md5(now.toString());
+    // Generate a 6-digit OTP
+    const otp = CryptoUtil.generateOTP();
+    const otpCreatedAt = new Date();
 
     const newCust = {
       username: username,
@@ -139,16 +146,18 @@ router.post("/signup", async function (req, res) {
       phone: phone,
       email: email,
       active: 0,
-      token: token,
+      token: null,
+      activeOTP: otp,
+      otpCreatedAt: otpCreatedAt,
     };
 
     const result = await CustomerDAO.insert(newCust);
 
     if (result) {
-      const send = await EmailUtil.send(email, result._id, token);
+      const send = await EmailUtil.send(email, otp);
 
       if (send) {
-        res.json({ success: true, message: "Please check email" });
+        res.json({ success: true, message: "Please check email for OTP code" });
       } else {
         res.json({ success: false, message: "Email failure" });
       }
