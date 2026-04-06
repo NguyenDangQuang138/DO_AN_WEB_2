@@ -1,18 +1,39 @@
 import React, { Component } from "react";
 import MyContext from "./MyContext";
 
+// ========================================================
+// HÀM LẤY DỮ LIỆU VÀ KIỂM TRA HẾT HẠN (Viết thẳng vào đây)
+// ========================================================
+const getWithExpiry = (key) => {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) return null; // Không có gì thì báo null
+
+  try {
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+
+    // Nếu hiện tại lớn hơn giờ hết hạn -> XÓA và báo null
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return item.value; // Nếu còn hạn thì trả về dữ liệu thật
+  } catch (error) {
+    return null; // Bắt lỗi trường hợp code cũ đang lưu sai định dạng
+  }
+};
+
 class MyProvider extends Component {
   constructor(props) {
     super(props);
 
-    const storedToken = localStorage.getItem("customer_token") || "";
+    // 1. Gọi hàm mới để lấy Token và User (Tự động loại bỏ nếu hết 15s)
+    const storedToken = getWithExpiry("customer_token") || "";
+    const storedCustomer = getWithExpiry("customer_user") || null;
 
-    let storedCustomer = null;
     let storedCart = [];
     try {
-      const customerData = localStorage.getItem("customer_user");
-      if (customerData) storedCustomer = JSON.parse(customerData);
-
+      // 2. Giỏ hàng thì vẫn lấy bình thường vì nó sống vĩnh viễn
       const cartData = localStorage.getItem("mycart");
       if (cartData) storedCart = JSON.parse(cartData);
     } catch (error) {
@@ -37,7 +58,6 @@ class MyProvider extends Component {
   setToken = (value) => {
     this.setState({ token: value });
   };
-
   setCustomer = (value) => {
     this.setState({ customer: value });
   };

@@ -3,12 +3,23 @@ import React, { Component } from "react";
 import MyContext from "../contexts/MyContext";
 import withRouter from "../utils/withRouter";
 
+// ========================================================
+// HÀM LƯU DỮ LIỆU CÓ THỜI HẠN (Viết thẳng vào đây cho khỏi lỗi)
+// ========================================================
+const setWithExpiry = (key, value, ttl) => {
+  const now = new Date();
+  const item = {
+    value: value,
+    expiry: now.getTime() + ttl, // Cộng thêm thời gian sống
+  };
+  localStorage.setItem(key, JSON.stringify(item));
+};
+
 class Login extends Component {
   static contextType = MyContext;
 
   constructor(props) {
     super(props);
-
     this.state = {
       txtUsername: "",
       txtPassword: "",
@@ -71,42 +82,44 @@ class Login extends Component {
 
   btnLoginClick(e) {
     e.preventDefault();
-
     const username = this.state.txtUsername;
     const password = this.state.txtPassword;
 
     if (username && password) {
       const account = { username: username, password: password };
-
       this.apiLogin(account);
     } else {
       alert("Please input username and password");
     }
   }
 
-  // ==========================================
-  // ĐÃ CẬP NHẬT HÀM LOGIN ĐỂ LẤY LẠI GIỎ HÀNG
-  // ==========================================
   apiLogin(account) {
     axios.post("/api/customer/login", account).then((res) => {
       const result = res.data;
 
       if (result.success === true) {
-        // 1. Lưu token và thông tin user
+        // ========================================================
+        // TEST NHANH 15 GIÂY (Test xong thì xóa dòng này đi)
+        const THOI_GIAN_SONG = 15 * 60 * 1000;
+
+        // KHI NÀO CHẠY THẬT THÌ DÙNG DÒNG NÀY (24 Tiếng)
+        // const THOI_GIAN_SONG = 24 * 60 * 60 * 1000;
+        // ========================================================
+
         this.context.setToken(result.token);
         this.context.setCustomer(result.customer);
-        // Lưu vào localStorage để giữ trạng thái đăng nhập khi reload trang
-        localStorage.setItem("customer_token", result.token);
-        localStorage.setItem("customer_user", JSON.stringify(result.customer));
-        // 2. KHÔI PHỤC GIỎ HÀNG TỪ DATABASE VÀO TRÌNH DUYỆT
+
+        // 1. Lưu Token và User có thời hạn (dùng hàm mới)
+        setWithExpiry("customer_token", result.token, THOI_GIAN_SONG);
+        setWithExpiry("customer_user", result.customer, THOI_GIAN_SONG);
+
+        // 2. Lưu Giỏ hàng KHÔNG có thời hạn (Sống vĩnh viễn)
         if (result.customer.cart && result.customer.cart.length > 0) {
           this.context.setMycart(result.customer.cart);
           localStorage.setItem("mycart", JSON.stringify(result.customer.cart));
-          console.log("Đã khôi phục giỏ hàng từ Database!");
         } else {
           this.context.setMycart([]);
           localStorage.removeItem("mycart");
-          console.log("Giỏ hàng trên Database đang trống.");
         }
 
         // 3. Chuyển hướng
