@@ -20,7 +20,7 @@ class Login extends Component {
       <div className="align-center">
         <h2 className="text-center">CUSTOMER LOGIN</h2>
 
-        <form>
+        <form onSubmit={(e) => this.btnLoginClick(e)}>
           <table className="align-center">
             <tbody>
               <tr>
@@ -95,7 +95,9 @@ class Login extends Component {
         // 1. Lưu token và thông tin user
         this.context.setToken(result.token);
         this.context.setCustomer(result.customer);
-
+        // Lưu vào localStorage để giữ trạng thái đăng nhập khi reload trang
+        localStorage.setItem("customer_token", result.token);
+        localStorage.setItem("customer_user", JSON.stringify(result.customer));
         // 2. KHÔI PHỤC GIỎ HÀNG TỪ DATABASE VÀO TRÌNH DUYỆT
         if (result.customer.cart && result.customer.cart.length > 0) {
           this.context.setMycart(result.customer.cart);

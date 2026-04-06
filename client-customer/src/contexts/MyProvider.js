@@ -5,11 +5,25 @@ class MyProvider extends Component {
   constructor(props) {
     super(props);
 
+    const storedToken = localStorage.getItem("customer_token") || "";
+
+    let storedCustomer = null;
+    let storedCart = [];
+    try {
+      const customerData = localStorage.getItem("customer_user");
+      if (customerData) storedCustomer = JSON.parse(customerData);
+
+      const cartData = localStorage.getItem("mycart");
+      if (cartData) storedCart = JSON.parse(cartData);
+    } catch (error) {
+      console.error("Lỗi khi đọc dữ liệu từ localStorage:", error);
+    }
+
     this.state = {
       // variables
-      token: "",
-      customer: null,
-      mycart: [],
+      token: storedToken,
+      customer: storedCustomer,
+      mycart: storedCart,
       // functions
       setToken: this.setToken,
       setCustomer: this.setCustomer,

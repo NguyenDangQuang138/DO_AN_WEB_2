@@ -75,6 +75,9 @@ class Menu extends Component {
     this.context.setToken("");
     this.context.setCustomer(null);
     this.context.setMycart([]);
+    localStorage.removeItem("customer_token");
+    localStorage.removeItem("customer_user");
+    localStorage.removeItem("mycart");
   }
 }
 
