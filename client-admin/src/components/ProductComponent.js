@@ -24,7 +24,7 @@ class Product extends Component {
         >
           <td>{item._id}</td>
           <td>{item.name}</td>
-          <td>{item.price}</td>
+          <td>{item.price.toLocaleString()}</td>
           <td>{new Date(item.cdate).toLocaleString()}</td>
           <td>{item.category?.name}</td>
           <td>

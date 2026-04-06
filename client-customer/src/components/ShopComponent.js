@@ -51,7 +51,9 @@ class Shop extends Component {
             <div className="product-name" title={item.name}>
               {item.name}
             </div>
-            <div className="product-price">{item.price} VND</div>
+            <div className="product-price">
+              {item.price.toLocaleString()} VND
+            </div>
             <div className="product-actions">
               <button
                 className="btn btn-cart"
@@ -60,7 +62,7 @@ class Shop extends Component {
                 Thêm vào giỏ
               </button>
               <button className="btn btn-buy" onClick={() => this.buyNow(item)}>
-                Mua ngay
+                Xem chi tiết
               </button>
             </div>
           </div>
@@ -147,7 +149,7 @@ class Shop extends Component {
       this.props.navigate("/login");
       return;
     }
-    alert(`Mua ngay sản phẩm: "${product.name}" - Giá: ${product.price} VND`);
+    this.props.navigate("/product/" + product._id);
   }
 }
 

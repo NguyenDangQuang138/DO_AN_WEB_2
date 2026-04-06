@@ -33,7 +33,7 @@ class Product extends Component {
               {item.name}
             </div>
             <div className="product-price">
-              Price: {item.price.toLocaleString()}
+              Price: {item.price.toLocaleString()} VND
             </div>
 
             <div className="product-actions">
@@ -117,7 +117,7 @@ class Product extends Component {
       this.props.navigate("/login");
       return;
     }
-    alert(`Mua ngay sản phẩm: "${product.name}" - Giá: ${product.price} VND`);
+    this.props.navigate("/product/" + product._id);
   }
 
   // Hàm gọi API cập nhật Database (Cái mà bạn bị khựng ở Bước 4 đây nè)

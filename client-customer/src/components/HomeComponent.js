@@ -34,7 +34,7 @@ class Home extends Component {
             </Link>
             <div className="product-info">
               <p className="product-name">{item.name}</p>
-              <p className="product-price">{item.price} VND</p>
+              <p className="product-price">{item.price.toLocaleString()} VND</p>
               <div className="product-actions">
                 <button
                   className="btn btn-cart"
@@ -46,7 +46,7 @@ class Home extends Component {
                   className="btn btn-buy"
                   onClick={() => this.buyNow(item)}
                 >
-                  Mua ngay
+                  Xem chi tiết
                 </button>
               </div>
             </div>
@@ -70,7 +70,7 @@ class Home extends Component {
             </Link>
             <div className="product-info">
               <p className="product-name">{item.name}</p>
-              <p className="product-price">{item.price} VND</p>
+              <p className="product-price">{item.price.toLocaleString()} VND</p>
               <div className="product-actions">
                 <button
                   className="btn btn-cart"
@@ -82,7 +82,7 @@ class Home extends Component {
                   className="btn btn-buy"
                   onClick={() => this.buyNow(item)}
                 >
-                  Mua ngay
+                  Xem chi tiết
                 </button>
               </div>
             </div>
@@ -224,7 +224,7 @@ class Home extends Component {
       this.props.navigate("/login");
       return;
     }
-    alert(`Mua ngay sản phẩm: "${product.name}" - Giá: ${product.price} VND`);
+    this.props.navigate("/product/" + product._id);
   }
 
   apiUpdateCart(mycart) {

@@ -24,7 +24,7 @@ class Contact extends Component {
       >
         <td>{item.topic}</td>
         <td>{item.fullname}</td>
-        <td>{new Date(item.cdate).toLocaleDateString("vi-VN")}</td>
+        <td>{new Date(item.cdate).toLocaleDateString(" ")}</td>
         <td className="text-center">
           <button
             className="btn-action btn-delete-small"
@@ -91,9 +91,7 @@ class Contact extends Component {
                 </p>
                 <p>
                   <strong>Ngày gửi:</strong>{" "}
-                  {new Date(this.state.itemSelected.cdate).toLocaleString(
-                    "vi-VN",
-                  )}
+                  {new Date(this.state.itemSelected.cdate).toLocaleString()}
                 </p>
               </div>
               <p>

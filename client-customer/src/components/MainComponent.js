@@ -15,11 +15,13 @@ import Shop from "./ShopComponent";
 import Contact from "./ContactComponent";
 import News from "./NewsComponent";
 import NewsDetail from "./NewsDetailComponent";
+import ScrollToTop from "./ScrollToTop";
 
 class Main extends Component {
   render() {
     return (
       <div className="body-customer">
+        <ScrollToTop />
         <Menu />
         <Inform />
         <Routes>

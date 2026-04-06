@@ -35,7 +35,9 @@ class ProductDetail extends Component {
             <div className="product-name" title={item.name}>
               {item.name}
             </div>
-            <div className="product-price">{item.price} VND</div>
+            <div className="product-price">
+              {item.price.toLocaleString()} VND
+            </div>
             <div className="product-actions">
               <button
                 className="btn btn-cart"
@@ -92,7 +94,7 @@ class ProductDetail extends Component {
                           Price:
                         </td>
                         <td style={{ color: "#ff6b35", fontWeight: "bold" }}>
-                          {prod.price} VND
+                          {prod.price.toLocaleString()} VND
                         </td>
                       </tr>
                       <tr>
