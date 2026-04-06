@@ -32,7 +32,9 @@ class Product extends Component {
             <div className="product-name" title={item.name}>
               {item.name}
             </div>
-            <div className="product-price">Price: {item.price}</div>
+            <div className="product-price">
+              Price: {item.price.toLocaleString()}
+            </div>
 
             <div className="product-actions">
               {/* BỔ SUNG: Gắn sự kiện onClick gọi hàm addToCart */}
