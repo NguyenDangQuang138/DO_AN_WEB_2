@@ -10,7 +10,7 @@ class Menu extends Component {
     super(props);
     this.state = {
       isMobileMenuOpen: false,
-      isUserMenuOpen: false, // 👈 THÊM CÔNG TẮC ĐỂ MỞ MENU NGƯỜI DÙNG
+      isUserMenuOpen: false, // Công tắc mở Dropdown
     };
   }
 
@@ -57,16 +57,56 @@ class Menu extends Component {
 
           <div className="user-auth-section">
             {this.context.token === "" ? (
-              <div>
-                <Link to="/login" className="category-link home-link">
-                  Login
-                </Link>{" "}
-                |{" "}
-                <Link to="/signup" className="category-link home-link">
-                  Sign-up
-                </Link>{" "}
+              /* ==========================================
+                 1. TRẠNG THÁI CHƯA ĐĂNG NHẬP (GUEST)
+                 ========================================== */
+              <div
+                className="logged-out-user"
+                style={{
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                {/* Khối Avatar mặc định cho khách */}
+                <div
+                  className="user-avatar-wrapper"
+                  onClick={() =>
+                    this.setState({
+                      isUserMenuOpen: !this.state.isUserMenuOpen,
+                    })
+                  }
+                  style={{ cursor: "pointer" }}
+                  title="Đăng nhập / Đăng ký"
+                >
+                  <img
+                    src="/image/user.png" /* Link ảnh avatar xám mặc định */
+                    alt="Guest"
+                    className="user-avatar-img"
+                    style={{
+                      borderColor: "#888",
+                    }}
+                  />
+                </div>
+
+                {/* Dropdown Login/Signup */}
+                <div
+                  className={`user-dropdown-menu ${this.state.isUserMenuOpen ? "open" : ""}`}
+                >
+                  <Link to="/login" className="user-menu-link">
+                    Login
+                  </Link>
+                  <span className="desktop-divider"> | </span>
+                  <Link to="/signup" className="user-menu-link">
+                    Sign-up
+                  </Link>
+                </div>
               </div>
             ) : (
+              /* ==========================================
+                 2. TRẠNG THÁI ĐÃ ĐĂNG NHẬP (USER)
+                 ========================================== */
               <div
                 className="logged-in-user"
                 style={{
@@ -76,7 +116,7 @@ class Menu extends Component {
                   gap: "10px",
                 }}
               >
-                {/* 1. KHỐI AVATAR NGƯỜI DÙNG (Bấm vào để mở Dropdown trên điện thoại) */}
+                {/* Khối Avatar thật của User */}
                 <div
                   className="user-avatar-wrapper"
                   onClick={() =>
@@ -88,13 +128,13 @@ class Menu extends Component {
                   title="Menu tài khoản"
                 >
                   <img
-                    src="/image/user.png" /* 👈 SỬA ĐƯỜNG DẪN ẢNH CỦA BẠN VÀO ĐÂY */
+                    src="/image/user.png" /* Thay đường dẫn ảnh của bạn vào đây nếu cần */
                     alt="User Logo"
                     className="user-avatar-img"
                   />
                 </div>
 
-                {/* 2. CỤM CHỮ SẼ TRỞ THÀNH DROPDOWN TRÊN MOBILE */}
+                {/* Dropdown Menu User */}
                 <div
                   className={`user-dropdown-menu ${this.state.isUserMenuOpen ? "open" : ""}`}
                 >
