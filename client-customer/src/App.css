@@ -2650,3 +2650,43 @@ body {
     max-width: 45% !important;
   }
 }
+/* =======================================================
+   FIX LỖI TRANG CHI TIẾT SẢN PHẨM BỊ TRÀN TRÊN MOBILE
+   ======================================================= */
+@media (max-width: 768px) {
+  /* 1. Ép Hình ảnh và Bảng thông tin xếp dọc (trên/dưới) thay vì ngang hàng */
+  figure.caption-right {
+    flex-direction: column !important;
+    gap: 15px !important;
+    padding: 0 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Ép ảnh sản phẩm co giãn vừa khít màn hình, phá bỏ lệnh width 400px cứng */
+  figure.caption-right img {
+    width: 100% !important;
+    max-width: 400px !important; /* Tránh ảnh bị zoom to đùng trên iPad */
+    height: auto !important; /* Quan trọng: tự động cân đối tỷ lệ ảnh */
+    margin: 0 auto !important; /* Canh giữa ảnh */
+  }
+
+  /* 3. Chỉnh lại bảng thông tin (Tên, Giá, Nút Mua) cho gọn gàng */
+  figure.caption-right figcaption {
+    width: 100% !important;
+    display: flex;
+    justify-content: center; /* Đẩy cụm thông tin ra giữa */
+  }
+
+  figure.caption-right table {
+    width: 100% !important;
+    max-width: 350px !important; /* Gom gọn chữ lại */
+    font-size: 14px !important; /* Giảm size chữ 1 xíu cho đỡ chật */
+  }
+
+  /* 4. Chỉnh nút Thêm vào giỏ ôm trọn chiều ngang cho dễ bấm */
+  figure.caption-right input[type="submit"] {
+    width: 100% !important;
+    padding: 12px !important;
+  }
+}
