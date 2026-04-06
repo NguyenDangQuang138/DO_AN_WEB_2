@@ -10,7 +10,12 @@ class Active extends Component {
       txtOTP: "",
     };
   }
-
+  componentDidMount() {
+    const savedEmail = sessionStorage.getItem("emailForActive");
+    if (savedEmail) {
+      this.setState({ txtEmail: savedEmail });
+    }
+  }
   render() {
     return (
       <div className="align-center">

@@ -125,13 +125,20 @@ class Signup extends Component {
   }
 
   apiSignup(account) {
-    axios.post("/api/customer/signup", account).then((res) => {
-      const result = res.data;
-      alert(result.message);
-      if (result.success === true) {
-        this.props.navigate("/active");
-      }
-    });
+    axios
+      .post("/api/customer/signup", account)
+      .then((res) => {
+        const result = res.data;
+        alert(result.message);
+        sessionStorage.setItem("emailForActive", account.email);
+        if (result.success === true) {
+          this.props.navigate("/active");
+        }
+      })
+      .catch((err) => {
+        alert("Lỗi kết nối đến máy chủ! Vui lòng thử lại sau.");
+        console.error("Lỗi Signup:", err);
+      });
   }
 }
 
