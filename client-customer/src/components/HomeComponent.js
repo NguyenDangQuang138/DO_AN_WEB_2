@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MyContext from "../contexts/MyContext";
 import withRouter from "../utils/withRouter";
-import "./styles/home.css";
+//
 
 class Home extends Component {
   static contextType = MyContext;
@@ -220,7 +220,7 @@ class Home extends Component {
 
   buyNow(product) {
     if (!this.context.token) {
-      alert("Vui lòng đăng nhập để mua sản phẩm!");
+      alert("Vui lòng đăng nhập để có thể xem chi tiết sản phẩm!");
       this.props.navigate("/login");
       return;
     }

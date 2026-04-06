@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "../utils/withRouter";
-import "./styles/home.css"; // Dùng chung CSS với trang chủ
+// // Dùng chung CSS với trang chủ
 
 class News extends Component {
   constructor(props) {

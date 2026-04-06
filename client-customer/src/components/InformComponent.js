@@ -42,7 +42,7 @@ class Inform extends Component {
           style={{ position: "relative" }}
         >
           <button
-            className="menu-toggle"
+            className="cate-toggle"
             onClick={() => this.setState({ menuOpen: !this.state.menuOpen })}
             aria-label="Toggle menu"
           >

@@ -16,6 +16,7 @@ import Contact from "./ContactComponent";
 import News from "./NewsComponent";
 import NewsDetail from "./NewsDetailComponent";
 import ScrollToTop from "./ScrollToTop";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 class Main extends Component {
   render() {
@@ -41,6 +42,7 @@ class Main extends Component {
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
         </Routes>
+        <ScrollToTopButton />
       </div>
     );
   }

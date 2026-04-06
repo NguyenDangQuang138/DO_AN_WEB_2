@@ -42,7 +42,7 @@ class Product extends Component {
                 className="btn btn-cart"
                 onClick={() => this.addToCart(item)}
               >
-                Add to cart
+                Thêm vào giỏ
               </button>
               <button className="btn btn-buy" onClick={() => this.buyNow(item)}>
                 Buy now
@@ -113,7 +113,7 @@ class Product extends Component {
 
   buyNow(product) {
     if (!this.context.token) {
-      alert("Vui lòng đăng nhập để mua sản phẩm!");
+      alert("Vui lòng đăng nhập để có thể xem chi tiết sản phẩm!");
       this.props.navigate("/login");
       return;
     }

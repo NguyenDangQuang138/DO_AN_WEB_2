@@ -6,11 +6,29 @@ import MyContext from "../contexts/MyContext";
 class Menu extends Component {
   static contextType = MyContext;
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMobileMenuOpen: false,
+      isUserMenuOpen: false, // 👈 THÊM CÔNG TẮC ĐỂ MỞ MENU NGƯỜI DÙNG
+    };
+  }
+
   render() {
     return (
       <div className="border-bottom sticky-menu">
         <div className="menu-header">
-          {/* Logo */}
+          {/* Nút 3 gạch cho điện thoại */}
+          <button
+            className="menu-toggle"
+            onClick={() =>
+              this.setState({ isMobileMenuOpen: !this.state.isMobileMenuOpen })
+            }
+          >
+            ☰
+          </button>
+
+          {/* Logo Web */}
           <Link to="/home" className="logo-container">
             <img
               src="/image/Gemini_Generated_Image_4kii5o4kii5o4kii.png"
@@ -18,8 +36,11 @@ class Menu extends Component {
               className="logo-img"
             />
           </Link>
-          {/* Các link điều hướng */}
-          <div className="nav-links">
+
+          {/* Nav Links */}
+          <div
+            className={`nav-links ${this.state.isMobileMenuOpen ? "menu-open" : ""}`}
+          >
             <Link className="category-link home-link" to="/">
               Trang chủ
             </Link>
@@ -33,6 +54,7 @@ class Menu extends Component {
               Liên hệ
             </Link>
           </div>
+
           <div className="user-auth-section">
             {this.context.token === "" ? (
               <div>
@@ -45,23 +67,58 @@ class Menu extends Component {
                 </Link>{" "}
               </div>
             ) : (
-              <div>
-                Hello <b>{this.context.customer.name}</b> |{" "}
-                <Link
-                  to="/home"
-                  className="category-link home-link"
-                  onClick={() => this.lnkLogoutClick()}
+              <div
+                className="logged-in-user"
+                style={{
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                {/* 1. KHỐI AVATAR NGƯỜI DÙNG (Bấm vào để mở Dropdown trên điện thoại) */}
+                <div
+                  className="user-avatar-wrapper"
+                  onClick={() =>
+                    this.setState({
+                      isUserMenuOpen: !this.state.isUserMenuOpen,
+                    })
+                  }
+                  style={{ cursor: "pointer" }}
+                  title="Menu tài khoản"
                 >
-                  Logout
-                </Link>{" "}
-                |{" "}
-                <Link to="/myprofile" className="category-link home-link">
-                  My profile
-                </Link>{" "}
-                |{" "}
-                <Link to="/myorders" className="category-link home-link">
-                  My orders
-                </Link>
+                  <img
+                    src="/image/user.png" /* 👈 SỬA ĐƯỜNG DẪN ẢNH CỦA BẠN VÀO ĐÂY */
+                    alt="User Logo"
+                    className="user-avatar-img"
+                  />
+                </div>
+
+                {/* 2. CỤM CHỮ SẼ TRỞ THÀNH DROPDOWN TRÊN MOBILE */}
+                <div
+                  className={`user-dropdown-menu ${this.state.isUserMenuOpen ? "open" : ""}`}
+                >
+                  <span className="user-name-text">
+                    Hello <b>{this.context.customer.name}</b>
+                  </span>
+
+                  <span className="desktop-divider"> | </span>
+                  <Link to="/myprofile" className="user-menu-link">
+                    My profile
+                  </Link>
+                  <span className="desktop-divider"> | </span>
+                  <Link to="/myorders" className="user-menu-link">
+                    My orders
+                  </Link>
+                  <span className="desktop-divider"> | </span>
+                  <Link
+                    to="/home"
+                    className="user-menu-link"
+                    onClick={() => this.lnkLogoutClick()}
+                  >
+                    Logout
+                  </Link>
+                </div>
               </div>
             )}
           </div>
@@ -70,7 +127,6 @@ class Menu extends Component {
     );
   }
 
-  // Hàm xử lý Đăng xuất
   lnkLogoutClick() {
     this.context.setToken("");
     this.context.setCustomer(null);

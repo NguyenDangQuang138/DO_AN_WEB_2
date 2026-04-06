@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom"; // Thêm Link để bọc sản phẩm
 import withRouter from "../utils/withRouter";
 import MyContext from "../contexts/MyContext"; // Thêm Context để xử lý giỏ hàng
-import "./styles/home.css"; // Tái sử dụng CSS lưới sản phẩm của trang chủ
+// // Tái sử dụng CSS lưới sản phẩm của trang chủ
 
 class NewsDetail extends Component {
   static contextType = MyContext; // Khai báo Context

@@ -211,6 +211,349 @@ li.menu {
   padding-bottom: 10px;
   font-size: 16px;
 }
+.footer {
+  background: linear-gradient(135deg, #111 0%, #222 100%);
+  color: #fff;
+  padding: 60px 0 0;
+  margin-top: 20px;
+  font-family: "Arial", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b35, #ff8c42, #ff6b35);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-section h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ff6b35;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+
+.footer-section h4::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: #ff6b35;
+}
+
+.footer-section p {
+  line-height: 1.7;
+  font-size: 15px;
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.footer-section ul li::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: #ff6b35;
+  font-size: 10px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-section ul li a:hover {
+  color: #ff6b35;
+  transform: translateX(5px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid #333;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #333 0%, #444 100%);
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.social-links a:hover {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 107, 53, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 0;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  .footer-section h4 {
+    font-size: 18px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .footer-bottom p {
+    order: 2;
+    font-size: 13px;
+  }
+
+  .social-links {
+    order: 1;
+  }
+
+  .social-links a {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+.home-container {
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Banner */
+.hero-banner {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content wrapper với padding */
+.hero-banner + section,
+section {
+  padding: 0 20px;
+}
+
+/* Title */
+.section-title {
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.about-us {
+  background: #3f3f3f;
+  color: #fff;
+  padding: 20px;
+  border-radius: 25px;
+  max-width: 1000px;
+  margin: 0 auto 50px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.about-us p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* Card */
+.product-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #eee; /* 👈 thêm dòng này */
+  border-radius: 10px; /* 👈 bo góc cho đẹp */
+  padding: 10px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border: 1px solid #000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Image */
+.product-img {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.product-img img {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Info */
+.product-info {
+  text-align: center;
+  padding: 10px 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #ff6b35;
+  margin: 5px 0 10px;
+  font-size: 14px;
+}
+
+/* Product Actions */
+.product-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-cart {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-cart:hover {
+  background: #e0e0e0;
+  border-color: #999;
+}
+
+.btn-buy {
+  background: #ff6b35;
+  color: #fff;
+}
+
+.btn-buy:hover {
+  background: #e55a25;
+  transform: scale(1.05);
+}
 
 .categories-list {
   display: flex;
@@ -1790,4 +2133,520 @@ section {
 .nav-links {
   display: flex;
   gap: 5rem;
+}
+/* =======================================================
+   CSS CHO NÚT LÊN ĐẦU TRANG (SCROLL TO TOP)
+   ======================================================= */
+.scroll-to-top {
+  position: fixed; /* Cố định vị trí trên màn hình */
+  bottom: 20px; /* Cách đáy 20px */
+  right: 20px; /* Cách phải 20px */
+  z-index: 999; /* Đảm bảo nằm trên các mục khác */
+}
+
+.scroll-to-top button {
+  background-color: #e55a25; /* Màu cam đặc trưng của website bạn */
+  color: white; /* Màu trắng cho biểu tượng mũi tên */
+  border: none;
+  width: 50px; /* Chiều rộng nút */
+  height: 50px; /* Chiều cao nút */
+  border-radius: 50%; /* Làm nút tròn */
+  font-size: 24px; /* Kích thước mũi tên */
+  font-weight: bold;
+  cursor: pointer; /* Hiển thị con trỏ tay */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt */
+}
+
+/* Hiệu ứng khi rê chuột vào (trên máy tính) */
+.scroll-to-top button:hover {
+  background-color: #c94b1c; /* Màu cam đậm hơn */
+  transform: translateY(-5px); /* Nút nhảy lên nhẹ */
+}
+
+/* RESPONSIVE CHO S20 ULTRA: Thu nhỏ một chút */
+@media (max-width: 480px) {
+  .scroll-to-top button {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important; /* Lệnh này chém đứt mọi thứ dám thò ra ngoài chiều ngang */
+  margin: 0;
+  padding: 0;
+}
+/* =======================================================
+   SỬA LỖI HEADER MENU BỊ TRÀN TRÊN ĐIỆN THOẠI
+   ======================================================= */
+@media (max-width: 768px) {
+  /* 1. Ẩn tất cả các nút chữ: Trang chủ, Sản phẩm, Tin tức... */
+  .menu-header .category-link {
+    display: none !important;
+  }
+
+  /* 2. Ẩn luôn phần Đăng nhập / Tên người dùng cho thoáng */
+  .user-auth-section {
+    display: none !important;
+  }
+
+  /* 3. Căn giữa lại cái Logo cho đẹp mắt */
+  .menu-header {
+    display: flex !important;
+    justify-content: center !important; /* Đẩy logo ra chính giữa */
+    align-items: center !important;
+    width: 100% !important;
+    padding: 10px 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  /* 1. Ép tất cả các khung bao ngoài phải khít 100% màn hình, không chừa lề */
+  html,
+  body,
+  #root,
+  .body-customer,
+  .home-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Ép cái Banner phải nằm ngay ngắn ở giữa */
+  .hero-banner {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .hero-banner img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important; /* Khống chế chiều cao cho vừa mắt */
+    object-fit: cover !important;
+    border-radius: 0 !important; /* Bỏ bo góc trên mobile cho tràn viền đẹp hơn */
+  }
+
+  /* 3. Chỉnh lại lưới sản phẩm cho cân đối, không bị lệch */
+  .product-grid {
+    width: 100% !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-grid .product-card {
+    width: calc(50% - 5px) !important; /* Chia đều 2 cột */
+    margin-bottom: 10px !important;
+  }
+}
+/* =======================================================
+   MENU ĐIỆN THOẠI: DẠNG DROP-DOWN (NÚT 3 GẠCH)
+   ======================================================= */
+@media (max-width: 768px) {
+  /* 1. Đẩy Logo ra giữa, sắp xếp lại Header */
+  .menu-header {
+    justify-content: space-between !important;
+    padding: 10px 15px !important;
+    position: relative; /* Để làm gốc cho menu thả xuống */
+  }
+
+  /* 2. Hiện nút 3 gạch (Hamburger Menu) */
+  .menu-toggle {
+    display: block !important;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* 3. Gom tất cả các link vào một menu thả xuống (Ẩn mặc định) */
+  ul.menu,
+  .nav-links {
+    position: absolute;
+    top: 100%; /* Nằm ngay dưới thanh dải băng đen */
+    left: 0;
+    width: 100%;
+    background-color: #111;
+    display: none !important; /* Ẩn đi khi chưa bấm */
+    flex-direction: column;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+  }
+
+  /* 4. CHỈ HIỆN RA khi được gắn class .menu-open (khi khách bấm nút ☰) */
+  ul.menu.menu-open,
+  .nav-links.menu-open {
+    display: flex !important;
+  }
+
+  /* 5. Trang trí lại các nút bấm cho to rõ, dễ bấm trên màn hình cảm ứng */
+  .category-link,
+  li.menu {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #333;
+    margin: 0 !important;
+  }
+
+  /* Tạm ẩn phần Login ngang hàng, bạn có thể đưa nó vào trong dropdown nếu muốn */
+  .user-auth-section {
+    display: none !important;
+  }
+}
+/* =======================================================
+   MENU ĐIỆN THOẠI: DẠNG DROP-DOWN (NÚT 3 GẠCH)
+   ======================================================= */
+@media (max-width: 768px) {
+  /* 1. Đẩy Logo ra giữa, sắp xếp lại Header */
+  .menu-header {
+    justify-content: space-between !important;
+    padding: 10px 15px !important;
+    position: relative; /* Để làm gốc cho menu thả xuống */
+  }
+
+  /* 2. Hiện nút 3 gạch (Hamburger Menu) */
+  .menu-toggle {
+    display: block !important;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* 3. Gom tất cả các link vào một menu thả xuống (Ẩn mặc định) */
+  ul.menu,
+  .nav-links {
+    position: absolute;
+    top: 100%; /* Nằm ngay dưới thanh dải băng đen */
+    left: 0;
+    width: 100%;
+    background-color: #111;
+    display: none !important; /* Ẩn đi khi chưa bấm */
+    flex-direction: column;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+  }
+
+  /* 4. CHỈ HIỆN RA khi được gắn class .menu-open (khi khách bấm nút ☰) */
+  ul.menu.menu-open,
+  .nav-links.menu-open {
+    display: flex !important;
+  }
+
+  /* 5. Trang trí lại các nút bấm cho to rõ, dễ bấm trên màn hình cảm ứng */
+  .category-link,
+  li.menu {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #333;
+    margin: 0 !important;
+  }
+
+  /* Tạm ẩn phần Login ngang hàng, bạn có thể đưa nó vào trong dropdown nếu muốn */
+  .user-auth-section {
+    display: none !important;
+  }
+}
+/* =======================================================
+   KÍCH HOẠT MENU THẢ XUỐNG KHI BẤM NÚT ☰ TRÊN MOBILE
+   ======================================================= */
+.menu-toggle {
+  display: none !important; /* Mặc định là TÀNG HÌNH trên mọi thiết bị */
+}
+@media (max-width: 768px) {
+  /* 1. Lấy menu-header làm gốc tọa độ */
+  .menu-header {
+    position: relative !important;
+  }
+
+  /* 2. Hiển thị nút 3 gạch */
+  .menu-toggle {
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+    font-size: 28px !important;
+    cursor: pointer !important;
+    padding: 0 10px !important;
+  }
+
+  /* 3. Khung Menu thả xuống (Mặc định ẨN) */
+  .nav-links {
+    display: none !important; /* Bình thường thì ẩn đi */
+    position: absolute !important;
+    top: 100% !important; /* Nằm ngay sát dưới mép thanh đen */
+    left: 0 !important;
+    width: 100% !important;
+    background-color: #111 !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5) !important;
+    z-index: 9999 !important;
+  }
+
+  /* 4. LỆNH QUAN TRỌNG NHẤT: HIỆN RA KHI BẤM NÚT */
+  .nav-links.menu-open {
+    display: flex !important; /* React sẽ gọi class này ra khi bạn bấm nút */
+    gap: 0 !important; /* Bỏ khoảng cách giữa các nút trong dropdown */
+  }
+
+  /* 5. Trang trí các nút chữ bên trong menu thả xuống cho bự ra dễ bấm */
+  .nav-links .category-link {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #333 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .nav-links .category-link:last-child {
+    border-bottom: none !important;
+  }
+}
+/* =======================================================
+   NÚT DANH MỤC SẢN PHẨM (TRẢ LẠI GIAO DIỆN GỐC)
+   ======================================================= */
+.cate-toggle {
+  background-color: #2d2c2c;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px; /* Tạo khoảng cách thở giữa icon ☰ và chữ */
+  color: #fff;
+  font-size: 1.5rem !important; /* Phục hồi kích thước to rõ cho icon ☰ */
+  cursor: pointer;
+  padding: 0 15px !important;
+  height: 42px !important; /* Ép chiều cao bằng y xì đúc ô tìm kiếm bên cạnh */
+  border-radius: 4px;
+  border: 1px solid #333;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.cate-toggle:hover {
+  background: #e55a25; /* Đổi cam khi hover */
+}
+
+/* Ẩn chữ trên điện thoại, chỉ hiện nút ☰ */
+@media (max-width: 768px) {
+  .cate-toggle .menu-label {
+    display: none !important;
+  }
+}
+/* =======================================================
+   GIAO DIỆN AVATAR VÀ DROPDOWN TÀI KHOẢN
+   ======================================================= */
+
+/* Style cho hình Avatar */
+.user-avatar-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e55a25;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.user-avatar-wrapper:hover .user-avatar-img {
+  transform: scale(1.1); /* Zoom nhẹ avatar khi di chuột */
+}
+
+/* Style mặc định trên PC (Nằm ngang) */
+.user-dropdown-menu {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #e55a25;
+}
+
+.user-menu-link {
+  color: #e55a25;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.user-menu-link:hover {
+  color: #fff; /* Đổi màu trắng khi hover trên PC */
+}
+
+/* =======================================================
+   GIAO DIỆN TÀI KHOẢN (PC LÀ CHỮ, MOBILE LÀ AVATAR DROPDOWN)
+   ======================================================= */
+
+/* 1. Kích thước chuẩn cho ảnh Avatar (Lúc nãy mình quên đoạn này) */
+.user-avatar-img {
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid #e55a25 !important;
+  display: block !important;
+}
+
+/* 2. MẶC ĐỊNH TRÊN MÁY TÍNH (PC) */
+.user-avatar-wrapper {
+  display: none !important; /* Giấu Avatar trên PC, chỉ để chữ */
+}
+
+.user-dropdown-menu {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #e55a25;
+}
+
+/* 3. CHỈ ÁP DỤNG TRÊN ĐIỆN THOẠI (MOBILE) */
+@media (max-width: 768px) {
+  /* Phá vỡ mọi lệnh ẩn cũ, ép khu vực người dùng phải hiện ra */
+  .menu-header .user-auth-section {
+    display: flex !important;
+  }
+
+  /* Hiện Avatar lên để làm nút bấm */
+  .user-avatar-wrapper {
+    display: block !important;
+  }
+
+  /* Ẩn các gạch dọc | */
+  .desktop-divider {
+    display: none !important;
+  }
+
+  /* Gom hàng chữ ngang thành Menu dọc thả xuống (Mặc định ẩn) */
+  .user-dropdown-menu {
+    display: none !important;
+    position: absolute;
+    top: 50px;
+    right: 15px;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    width: 160px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 0;
+    z-index: 1000;
+    border: 1px solid #333;
+    overflow: hidden;
+  }
+
+  /* HIỆN MENU KHI BẤM VÀO AVATAR TRÊN MOBILE */
+  .user-dropdown-menu.open {
+    display: flex !important;
+  }
+
+  /* Trang trí các mục bên trong dropdown cho đẹp */
+  .user-dropdown-menu .user-name-text,
+  .user-dropdown-menu .user-menu-link {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    text-align: right;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;
+    color: #e55a25;
+  }
+
+  .user-dropdown-menu .user-name-text {
+    background-color: #2a2a2a;
+  }
+
+  .user-dropdown-menu .user-menu-link:last-child {
+    border-bottom: none;
+  }
+}
+/* =======================================================
+   FIX LỖI THANH MENU ĐÈ LÊN THANH INFORM TRÊN ĐIỆN THOẠI
+   ======================================================= */
+@media (max-width: 768px) {
+  .inform-bar {
+    /* Đẩy thanh Inform xuống một khoảng bằng đúng chiều cao của Menu */
+    margin-top: 95px !important;
+
+    /* Ép khoảng cách các phần tử bên trong cho gọn gàng, không bị tràn */
+    padding: 10px 10px !important;
+    gap: 8px !important;
+  }
+
+  /* Thu nhỏ khoảng cách thanh tìm kiếm lại một chút để không ép giỏ hàng */
+  .inform-bar > div:nth-child(2) {
+    margin: 0 10px !important;
+  }
+
+  /* Chỉnh nút Search trên mobile cho thanh mảnh hơn */
+  .inform-bar .search input[type="submit"] {
+    padding: 0 15px !important;
+  }
+}
+/* =======================================================
+   BIẾN LƯỚI SẢN PHẨM THÀNH SLIDER VUỐT NGANG TRÊN MOBILE
+   ======================================================= */
+@media (max-width: 768px) {
+  .product-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* CẤM rớt dòng, ép tất cả nằm trên 1 hàng ngang */
+    overflow-x: auto !important; /* Bật tính năng cuộn ngang */
+    overflow-y: hidden !important;
+    gap: 15px !important;
+    padding: 10px 10px 20px 10px !important; /* Chừa khoảng trống phía dưới cho bóng đổ (box-shadow) */
+
+    /* Bật tính năng vuốt khấc (Scroll Snap) cho cảm giác mượt như App */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Giúp vuốt siêu mượt trên iPhone/iPad */
+
+    /* Ẩn thanh cuộn ngang đi cho thẩm mỹ (Firefox) */
+    scrollbar-width: none;
+  }
+
+  /* Ẩn thanh cuộn ngang trên Chrome / Safari / Edge */
+  .product-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Chỉnh lại kích thước từng sản phẩm bên trong slider */
+  .product-grid .product-card {
+    /* Set kích thước ~38% để hiển thị 2.5 sản phẩm trên màn hình */
+    /* Nếu bạn thực sự muốn hiển thị tròn 3 sản phẩm nhỏ xíu, hãy đổi thành 30% */
+    flex: 0 0 38% !important;
+    max-width: 38% !important;
+    width: 38% !important;
+    margin-bottom: 0 !important; /* Xóa margin dưới vì đã trượt ngang */
+
+    /* Điểm neo để khi khách vuốt lỡ cỡ, nó tự hít vào cạnh cho ngay ngắn */
+    scroll-snap-align: start;
+  }
+}
+
+/* Tinh chỉnh nhỏ cho màn hình cực bé (như iPhone SE) để tránh sản phẩm bị ép quá nhỏ */
+@media (max-width: 400px) {
+  .product-grid .product-card {
+    flex: 0 0 45% !important;
+    max-width: 45% !important;
+  }
 }

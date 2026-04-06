@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./styles/home.css"; // Trích xuất CSS từ file home.css giống hệt trang Shop
+// // Trích xuất CSS từ file home.css giống hệt trang Shop
 
 class CategoryMenu extends Component {
   constructor(props) {

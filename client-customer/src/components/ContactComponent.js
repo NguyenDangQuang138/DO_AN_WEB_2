@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styles/home.css"; // Dùng chung file css hiện tại
+// Dùng chung file css hiện tại
 import axios from "axios";
 
 class Contact extends Component {
@@ -115,28 +115,8 @@ class Contact extends Component {
 
   // Hàm xử lý khi bấm gửi
   handleSubmit(e) {
-    e.preventDefault(); // Chặn việc trang web bị reload lại
-
-    // Ở đây sau này bạn có thể gọi API gửi data về Backend
-    // Hiện tại mình cho hiện thông báo thành công
-    alert(
-      "Cảm ơn " +
-        this.state.fullname +
-        ". Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ phản hồi sớm nhất!",
-    );
-
-    // Xóa trắng form sau khi gửi
-    this.setState({
-      topic: "",
-      title: "",
-      content: "",
-      fullname: "",
-      email: "",
-      phone: "",
-    });
-  }
-  handleSubmit(e) {
     e.preventDefault();
+
     const body = {
       topic: this.state.topic,
       title: this.state.title,
@@ -151,6 +131,7 @@ class Contact extends Component {
       .then((res) => {
         if (res.data) {
           alert("Gửi liên hệ thành công! Chúng tôi sẽ phản hồi sớm nhất.");
+
           this.setState({
             topic: "",
             title: "",

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "../utils/withRouter";
 import MyContext from "../contexts/MyContext";
-import "./styles/home.css"; // Tái sử dụng CSS của trang Home
+// // Tái sử dụng CSS của trang Home
 
 class Shop extends Component {
   static contextType = MyContext;
@@ -145,7 +145,7 @@ class Shop extends Component {
 
   buyNow(product) {
     if (!this.context.token) {
-      alert("Vui lòng đăng nhập để mua sản phẩm!");
+      alert("Vui lòng đăng nhập để có thể xem chi tiết sản phẩm!");
       this.props.navigate("/login");
       return;
     }
