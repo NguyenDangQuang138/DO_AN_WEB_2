@@ -6,8 +6,9 @@ class Menu extends Component {
   static contextType = MyContext;
 
   render() {
+    // Đã đưa chú thích ra ngoài lệnh return để không bị lỗi JSX
     return (
-      <div className="border-bottom">
+      <div className="admin-topnav">
         <div className="float-left">
           <ul className="menu">
             <li className="menu">

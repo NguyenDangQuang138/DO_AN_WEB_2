@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
 import MyContext from "../contexts/MyContext";
-// Nhớ tạo file CSS riêng này hoặc dán vào file CSS chung của Admin nhé
 
 class Contact extends Component {
   static contextType = MyContext; // Để lấy Admin token
@@ -24,7 +23,8 @@ class Contact extends Component {
       >
         <td>{item.topic}</td>
         <td>{item.fullname}</td>
-        <td>{new Date(item.cdate).toLocaleDateString(" ")}</td>
+        {/* ĐÃ SỬA: Đổi " " thành "vi-VN" để ép chuẩn ngày tháng Việt Nam */}
+        <td>{new Date(item.cdate).toLocaleDateString("vi-VN")}</td>
         <td className="text-center">
           <button
             className="btn-action btn-delete-small"
@@ -91,7 +91,10 @@ class Contact extends Component {
                 </p>
                 <p>
                   <strong>Ngày gửi:</strong>{" "}
-                  {new Date(this.state.itemSelected.cdate).toLocaleString()}
+                  {/* ĐÃ SỬA: Ép chuẩn giờ VN cho đẹp */}
+                  {new Date(this.state.itemSelected.cdate).toLocaleString(
+                    "vi-VN",
+                  )}
                 </p>
               </div>
               <p>
@@ -112,7 +115,7 @@ class Contact extends Component {
               </div>
             </div>
           ) : (
-            // TRƯỜNG HỢP 2: CHƯA CHỌN TIN NHẮN NÀO (GIỐNG ẢNH MẪU 4)
+            // TRƯỜNG HỢP 2: CHƯA CHỌN TIN NHẮN NÀO
             <div className="contact-detail-empty">
               <div className="empty-placeholder">
                 Chọn một liên hệ từ danh sách bên trái để xem nội dung chi tiết.

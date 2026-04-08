@@ -12,79 +12,113 @@ class Product extends Component {
       noPages: 0,
       curPage: 1,
       itemSelected: null,
+      keyword: "", // Thêm state để lưu từ khóa tìm kiếm
     };
   }
   render() {
-    const prods = this.state.products.map((item) => {
+    // TÍNH NĂNG 1: LỌC SẢN PHẨM THEO TỪ KHÓA TÌM KIẾM
+    const filteredProducts = this.state.products.filter((item) =>
+      item.name.toLowerCase().includes(this.state.keyword.toLowerCase()),
+    );
+
+    const prods = filteredProducts.map((item) => {
       return (
         <tr
           key={item._id}
-          className="datatable"
+          // Thêm class selected để biết dòng nào đang được bấm
+          className={`datatable-row ${this.state.itemSelected?._id === item._id ? "selected" : ""}`}
           onClick={() => this.trItemClick(item)}
         >
-          <td>{item._id}</td>
+          <td>
+            <b>{item._id.substring(item._id.length - 6)}</b>
+          </td>{" "}
+          {/* Cắt ID cho gọn */}
           <td>{item.name}</td>
-          <td>{item.price.toLocaleString()}</td>
-          <td>{new Date(item.cdate).toLocaleString()}</td>
+          <td style={{ color: "#e55a25", fontWeight: "bold" }}>
+            {item.price.toLocaleString()} đ
+          </td>
+          <td>{new Date(item.cdate).toLocaleDateString("vi-VN")}</td>
           <td>{item.category?.name}</td>
           <td>
             <img
               src={"data:image/jpg;base64," + item.image}
-              width="100px"
-              height="100px"
-              alt=""
+              width="60px"
+              height="60px"
+              alt={item.name}
+              style={{ borderRadius: "5px", objectFit: "cover" }}
             />
           </td>
         </tr>
       );
     });
+
+    // TÍNH NĂNG 2: LÀM ĐẸP NÚT PHÂN TRANG (PAGINATION)
     const pagination = Array.from(
       { length: this.state.noPages },
       (_, index) => {
-        if (index + 1 === this.state.curPage) {
-          return (
-            <span key={index}>
-              | <b>{index + 1}</b> |
-            </span>
-          );
-        } else {
-          return (
-            <span
-              key={index}
-              className="link"
-              onClick={() => this.lnkPageClick(index + 1)}
-            >
-              | {index + 1} |
-            </span>
-          );
-        }
+        const isActive = index + 1 === this.state.curPage;
+        return (
+          <button
+            key={index}
+            className={`page-btn ${isActive ? "active" : ""}`}
+            onClick={() => this.lnkPageClick(index + 1)}
+          >
+            {index + 1}
+          </button>
+        );
       },
     );
+
     return (
-      <div className="admin-product-page-container">
+      // Dùng admin-container để chuẩn form Flexbox
+      <div className="admin-container">
         {/* CỘT TRÁI: DANH SÁCH SẢN PHẨM */}
-        <div className="admin-list-section">
-          <h2 className="text-center">PRODUCT LIST</h2>
-          <div className="table-wrapper">
-            <table className="datatable">
+        <div className="admin-list-box">
+          <h2 className="admin-section-title">QUẢN LÝ SẢN PHẨM</h2>
+
+          {/* THANH TÌM KIẾM */}
+          <div className="admin-search-box">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="🔍 Nhập tên sản phẩm để tìm kiếm nhanh..."
+              value={this.state.keyword}
+              onChange={(e) => this.setState({ keyword: e.target.value })}
+            />
+          </div>
+
+          <div className="table-scroll-wrapper" style={{ maxHeight: "55vh" }}>
+            <table className="admin-datatable">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Created Date</th>
-                  <th>Category</th>
-                  <th>Image</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Giá</th>
+                  <th>Ngày tạo</th>
+                  <th>Danh mục</th>
+                  <th>Ảnh</th>
                 </tr>
               </thead>
-              <tbody>{prods}</tbody>
+              <tbody>
+                {filteredProducts.length > 0 ? (
+                  prods
+                ) : (
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      Không tìm thấy sản phẩm nào!
+                    </td>
+                  </tr>
+                )}
+              </tbody>
             </table>
           </div>
-          <div className="pagination-wrapper">{pagination}</div>
+
+          {/* KHU VỰC CHỨA NÚT PHÂN TRANG */}
+          <div className="admin-pagination">{pagination}</div>
         </div>
 
         {/* CỘT PHẢI: CHI TIẾT SẢN PHẨM (Form + Editor) */}
-        <div className="admin-detail-section">
+        <div className="admin-detail-box">
           <ProductDetail
             item={this.state.itemSelected}
             curPage={this.state.curPage}
@@ -94,21 +128,24 @@ class Product extends Component {
       </div>
     );
   }
+
   updateProducts = (products, noPages, curPage) => {
-    // arrow-function
     this.setState({ products: products, noPages: noPages, curPage: curPage });
   };
+
   componentDidMount() {
     this.apiGetProducts(this.state.curPage);
   }
-  // event-handlers
+
   lnkPageClick(index) {
     this.apiGetProducts(index);
+    this.setState({ keyword: "" }); // Reset từ khóa khi chuyển trang
   }
+
   trItemClick(item) {
     this.setState({ itemSelected: item });
   }
-  // apis
+
   apiGetProducts(page) {
     const config = { headers: { "x-access-token": this.context.token } };
     axios.get("/api/admin/products?page=" + page, config).then((res) => {
@@ -121,4 +158,5 @@ class Product extends Component {
     });
   }
 }
+
 export default Product;

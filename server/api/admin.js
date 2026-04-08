@@ -157,11 +157,15 @@ router.get("/products", JwtUtil.checkToken, async function (req, res) {
   const sizePage = 4;
   const noPages = Math.ceil(noProducts / sizePage);
   var curPage = 1;
-  if (req.query.page) curPage = parseInt(req.query.page); // /products?page=xxx
+  if (req.query.page) curPage = parseInt(req.query.page); //
   const skip = (curPage - 1) * sizePage;
   const products = await ProductDAO.selectBySkipLimit(skip, sizePage);
-  // return
-  const result = { products: products, noPages: noPages, curPage: curPage };
+  const result = {
+    products: products,
+    noPages: noPages,
+    curPage: curPage,
+    totalCount: noProducts,
+  };
   res.json(result);
 });
 
