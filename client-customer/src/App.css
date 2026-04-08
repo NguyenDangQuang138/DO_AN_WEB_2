@@ -2690,3 +2690,60 @@ body {
     padding: 12px !important;
   }
 }
+@media (max-width: 768px) {
+  /* 1. Ép Cột trái (Giỏ hàng) và Cột phải (Thanh toán) xếp dọc */
+  .cart-page-container {
+    flex-direction: column !important;
+  }
+
+  .cart-left-section,
+  .cart-right-section {
+    width: 100% !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Ép các phần tử trong 1 sản phẩm tự động rớt dòng (wrap) */
+  .cart-item-card {
+    display: flex !important;
+    flex-wrap: wrap !important; /* Quan trọng: Cho phép rớt dòng */
+    padding: 15px 10px !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  /* 3. Ảnh nhỏ lại một xíu */
+  .cart-item-img {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  /* 4. Tên và nút Xóa chiếm nốt không gian bên phải ảnh */
+  .cart-item-info {
+    flex: 1 !important;
+    min-width: 150px !important; /* Đảm bảo không bị bóp nghẹt */
+    padding: 0 !important;
+  }
+
+  /* 5. Giá lẻ: Tạm thời ẩn đi cho đỡ chật (vì đã có Tổng tiền ở dưới) */
+  .cart-item-price {
+    display: none !important;
+  }
+
+  /* 6. Cụm chỉnh Số Lượng: Đẩy xuống hàng dưới, nằm góc trái */
+  .cart-item-card > div[style*="flex: 1"] {
+    flex: none !important;
+    width: 48% !important;
+    justify-content: flex-start !important;
+    margin-top: 10px !important;
+  }
+
+  /* 7. Tổng tiền: Đẩy xuống hàng dưới, nằm góc phải, bôi cam cho nổi */
+  .cart-item-total {
+    width: 48% !important;
+    text-align: right !important;
+    margin-top: 10px !important;
+    color: #e55a25 !important;
+    font-weight: bold !important;
+  }
+}

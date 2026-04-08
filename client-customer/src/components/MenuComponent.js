@@ -57,9 +57,6 @@ class Menu extends Component {
 
           <div className="user-auth-section">
             {this.context.token === "" ? (
-              /* ==========================================
-                 1. TRẠNG THÁI CHƯA ĐĂNG NHẬP (GUEST)
-                 ========================================== */
               <div
                 className="logged-out-user"
                 style={{
