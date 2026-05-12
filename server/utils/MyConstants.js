@@ -1,7 +1,7 @@
 const MyConstants = {
   DB_SERVER: "cluster0.ikbcwsf.mongodb.net",
   DB_USER: "NguyenDangQuang123",
-  DB_PASS: "Wd7giVbkjUE1rbad",
+  DB_PASS: "dis7ORJQXebALMaC",
   DB_DATABASE: "shoppingonline",
 
   EMAIL_USER: "Caiquatmay138@gmail.com",

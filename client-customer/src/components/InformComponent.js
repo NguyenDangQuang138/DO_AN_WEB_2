@@ -78,7 +78,7 @@ class Inform extends Component {
                 // Đóng khung gợi ý khi click ra ngoài (delay 200ms để kịp nhận sự kiện click vào sản phẩm)
                 setTimeout(
                   () => this.setState({ showSuggestions: false }),
-                  200,
+                  100,
                 );
               }}
               onFocus={() => {
